@@ -17,35 +17,77 @@ Este sistema é direcionado principalmente para gestores do SENAI responsáveis 
 
 | Perfil de usuário | Descrição, necessidades e interesses. |
 | --- | --- |
-| Gestores de Cursos | Necessitam de uma visão centralizada para aprovar a abertura de turmas, ajustar a alocação de docentes e gerenciar o calendário. |
-| Coordenadores de Docentes | Precisam alocar os docentes de acordo com a demanda de cursos e identificar quando mudanças de professores são necessárias. |
-| Assistentes Administrativos | Utilizam o sistema para emitir relatórios, acompanhar quórum e comunicar mudanças na programação das turmas. |
+| Coordenador dos cursos FIC | Necessita de uma visão centralizada para aprovar a abertura de turmas, ajustar a alocação de docentes e gerenciar o calendário de cursos.  |
+
 
 ---
 
 ## Personas
 
-1. **João, Gestor de Cursos**: Responsável por aprovar a abertura de turmas. Ele valoriza um dashboard claro com indicadores financeiros, quórum de alunos e visão de disponibilidade dos docentes. João precisa de um sistema fácil de usar para evitar a navegação em múltiplas planilhas.
-2. **Maria, Coordenadora de Docentes**: Faz o acompanhamento dos horários dos docentes. Sua frustração é a falta de visibilidade clara de disponibilidade e sobreposição de horários. Ela quer poder ajustar rapidamente o cronograma e ver o status das turmas.
-3. **Lucas, Assistente Administrativo**: Precisa de uma ferramenta para exportar relatórios e acompanhar o progresso das turmas. Lucas valoriza um sistema que automatize a geração de relatórios e facilite o ajuste de informações financeiras e de quórum.
+> **Lucas, Coordenador dos cursos FIC**: Responsável por aprovar a abertura de turmas. Ele valoriza um dashboard claro com indicadores financeiros, quórum de alunos e visão de disponibilidade dos docentes. Lucas precisa de um sistema fácil de usar para evitar a navegação em múltiplas planilhas.
+>
 
 ---
 
 ## Requisitos Funcionais
 
-1. **F1**: Dashboard visual com indicadores (cursos, matrículas, situação financeira). Deve permitir a visualização rápida do status das turmas e dos docentes. **P1**
-2. **F2**: Alocação de docentes conforme o calendário predefinido. Permitir ajustes manuais para substituição de professores. **P1**
-3. **F3**: Sistema de quórum para aprovação de turmas. Um botão de aprovação será ativado quando o número mínimo de alunos for atingido. **P1**
-4. **F4**: Geração e exportação de relatórios de calendário e materiais necessários por curso. **P2**
-5. **F5**: Notificações automáticas para gestores e assistentes quando uma turma atingir o número mínimo de alunos. **P2**
+
+### **F1. Dashboard visual com indicadores (cursos, matrículas, receita)**
+- **Descrição:**  Exibir um dashboard com gráficos de progresso para cursos lecionados, matrículas e receita, comparando os valores atuais com as metas anuais. 
+- **Critérios de Aceitação:**
+    - Gráficos de progresso para cada métrica (quantidade de cursos, matrículas e receita total gerada).
+    - Comparação clara entre valor atual e meta anual.
+- **Prioridade:** P1 (Alta)
+
+
+### **F2. Calendário de aulas dos docentes**
+- **Descrição:**  Visualizar o calendário de aulas de um docente específico, com opção de edição do calendário.
+- **Critérios de Aceitação:**
+    - Filtro para visualização individual do calendário de cada docente.
+    - O calendário deve exibir: dias reservados para cursos, feriados (vermelho), emendas de feriado (amarelo), e eventos do ano letivo (outras cores).
+    - Possibilidade de reservar datas customizadas.
+- **Prioridade:** P1 (Alta)
+
+
+### **F3. Sistema de quórum para aprovação de turmas**
+- **Descrição:** Visualizar o número de matrículas estimadas e efetivadas para cada curso, com um esquema de cores para indicar o status de quórum. Ao atingir o quórum, deve ser possível notificar automaticamente a secretaria escolar.
+- **Critérios de Aceitação:**
+    - Visualizar o número de matrículas estimadas e realizadas por curso.
+    - Indicar os cursos que atingiram o quórum mínimo (verde).
+    - Enviar e-mail automatizado para a secretaria escolar quando o quórum for atingido.
+- **Prioridade:** P1 (Alta)
+
+
+### **F4. Alocação de docentes**
+- **Descrição:** Permitir a alocação manual de professores em cursos.
+- **Critérios de Aceitação:**
+  - Atribuir um novo professor ao curso.
+- **Prioridade:** P2 (Baixa)
+
+
+### **F5. Relatório de materiais por cursos**
+- **Descrição:** Gerar e exportar relatórios de materiais necessários para cada curso.
+- **Critérios de Aceitação:**
+  - Inserir materiais necessário para o curso (código, descrição e quantidade).
+  - Calcular a quantidade total de materiais com base no número de alunos matriculados.
+  - Permitir exportação da lista de materiais por aluno em formato PDF.
+- **Prioridade:** P2 (Baixa)
+
+
 
 ### Casos de uso
 
-> **Caso de uso 1:** João acessa o dashboard, visualiza o número de matrículas em uma turma e aprova sua abertura ao atingir o número mínimo de alunos.
->
-> **Caso de uso 2:** Maria verifica o calendário de docentes e realiza uma substituição manual para evitar sobreposição de horários.
->
-> **Caso de uso 3:** Lucas gera um relatório de materiais necessários para uma turma específica e exporta o arquivo em PDF.
+> **Caso de uso F1:** Lucas acessa o dashboard para obter uma visão geral do desempenho dos cursos. Ele visualiza gráficos que mostram o número de cursos lecionados, matrículas e a receita gerada. Ao comparar os valores atuais com as metas anuais, Lucas pode identificar áreas que precisam de atenção.
+
+> **Caso de uso F2:** Lucas deseja visualizar o calendário de um docente específico para planejar a alocação de aulas. Ele pode editar o calendário conforme necessário.
+
+> **Caso de uso F3:** Lucas verifica o status de quórum das turmas, visualizando matrículas estimadas e efetivas. Quando uma turma atinge o quórum, ele pode notificar a secretaria escolar automaticamente.
+
+> **Caso de uso F4:** Lucas precisa alocar um docente a um curso específico. Ele utiliza a funcionalidade de alocação manual.
+
+> **Caso de uso F5:** Lucas precisa gerar um relatório dos materiais necessários para um curso específico, incluindo a quantidade com base nas matrículas.
+
+
 
 ---
 
@@ -59,9 +101,9 @@ Este sistema é direcionado principalmente para gestores do SENAI responsáveis 
 
 | Medida | Estado atual | Esperado | Resultados |
 | --- | --- | --- | --- |
-| Tempo de carregamento | 5 segundos | Máximo 2 segundos |  |
-| Quórum mínimo por turma | Varia | Mínimo 7 alunos |  |
-| Número de relatórios gerados | Não disponível | Mínimo 10 por mês |  |
+| Tempo de carregamento |  | Máximo 2 segundos |  |
+| Quórum mínimo por turma |  | 51% |  |
+| Número de relatórios gerados |  | Mínimo 10 por mês |  |
 
 ---
 
@@ -86,8 +128,8 @@ Este sistema é direcionado principalmente para gestores do SENAI responsáveis 
 ## Plano de lançamento
 
 1. **Regras para lançamento interno:**
-    - [ ] Validação com o cliente baseada no SG7.
-    - [ ] Divulgação interna aos gestores do SENAI.
+    - [ ] Validação com o cliente.
+
 
 ---
 
