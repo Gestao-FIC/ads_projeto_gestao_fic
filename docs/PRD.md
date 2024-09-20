@@ -2,7 +2,7 @@
 
 ## Introdução & objetivo
 
-Este sistema visa otimizar a alocação de docentes e o gerenciamento de turmas dos cursos de formação inicial e continuada (FIC) do SENAI, integrando dados do sistema legado SG7 em um dashboard visual para facilitar o acompanhamento e aprovação de cursos. O principal objetivo é centralizar as informações relacionadas aos cursos e docentes, permitindo uma tomada de decisão eficiente sobre a abertura de turmas com base em critérios de quórum e a gestão do alocamento de docentes aos cursos. A solução também melhora o processo de substituição de docentes em casos de imprevistos, e simplifica o planejamento de infraestrutura e materiais.
+Este sistema visa otimizar a alocação de docentes e o gerenciamento de turmas dos cursos de formação inicial e continuada (FIC) do SENAI, integrando dados do sistema legado SGSET em um dashboard visual para facilitar o acompanhamento e aprovação de cursos. O principal objetivo é centralizar as informações relacionadas aos cursos e docentes, permitindo uma tomada de decisão eficiente sobre a abertura de turmas com base em critérios de quórum e a gestão do alocamento de docentes aos cursos. A solução também melhora o processo de substituição de docentes em casos de imprevistos, e simplifica o planejamento de infraestrutura e materiais.
 
 
 ## Por que implementar isto?
@@ -17,7 +17,8 @@ Este sistema é direcionado principalmente para gestores do SENAI responsáveis 
 
 | Perfil de usuário | Descrição, necessidades e interesses. |
 | --- | --- |
-| Coordenador dos cursos FIC | Necessita de uma visão centralizada para aprovar a abertura de turmas, ajustar a alocação de docentes e gerenciar o calendário de cursos.  |
+| Coordenador dos cursos FIC | Necessita de uma visão centralizada para aprovar a abertura de turmas, alocar docentes e gerenciar o calendário de cursos.  |
+| Orientador de práticas profissionais |  Necessita visualizar o progresso alcançado em relação à metas anuais (cursos, matrículas e receita)  |
 
 
 ---
@@ -25,7 +26,10 @@ Este sistema é direcionado principalmente para gestores do SENAI responsáveis 
 ## Personas
 
 > **Lucas, Coordenador dos cursos FIC**: Responsável por aprovar a abertura de turmas. Ele valoriza um dashboard claro com indicadores financeiros, quórum de alunos e visão de disponibilidade dos docentes. Lucas precisa de um sistema fácil de usar para evitar a navegação em múltiplas planilhas.
->
+
+
+> **Felipe, Orientador de práticas profissionais:** Responsável por acompanhar o progresso anual de cursos, matrículas e receita gerada com os cursos realizados. Felipe valoriza uma visão clara e detalhada do quanto já foi alcançado em comparação às metas anuais.
+
 
 ---
 
@@ -45,7 +49,7 @@ Este sistema é direcionado principalmente para gestores do SENAI responsáveis 
 - **Critérios de Aceitação:**
     - Filtro para visualização individual do calendário de cada docente.
     - O calendário deve exibir: dias reservados para cursos, feriados (vermelho), emendas de feriado (amarelo), e eventos do ano letivo (outras cores).
-    - Possibilidade de reservar datas customizadas.
+    - Possibilidade de marcar datas customizadas.
 - **Prioridade:** P1 (Alta)
 
 
