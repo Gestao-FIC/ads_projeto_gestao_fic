@@ -40,42 +40,43 @@ Este sistema é direcionado principalmente para gestores do SENAI responsáveis 
 - **Descrição:**  Exibir um dashboard com gráficos de progresso para cursos lecionados, matrículas e receita, comparando os valores atuais com as metas anuais. 
 - **Critérios de Aceitação:**
     - Gráficos de progresso para cada métrica (quantidade de cursos, matrículas e receita total gerada).
-    - Comparação clara entre valor atual e meta anual.
-- **Prioridade:** P1 (Alta)
+- **Prioridade:** P1 
 
 
 ### **F2. Calendário de aulas dos docentes**
 - **Descrição:**  Visualizar o calendário de aulas de um docente específico, com opção de edição do calendário.
 - **Critérios de Aceitação:**
-    - Filtro para visualização individual do calendário de cada docente.
-    - O calendário deve exibir: dias reservados para cursos, feriados (vermelho), emendas de feriado (amarelo), e eventos do ano letivo (outras cores).
-    - Possibilidade de marcar datas customizadas.
-- **Prioridade:** P1 (Alta)
+  - Exibir o calendário de cada docente, destacando os períodos reservados para cursos, datas letivas do SENAI, feriados (em vermelho), emendas (em amarelo) e eventos pessoais (em outras cores).
+  - Incluir feriados municipais de Sorocaba e Itapetininga, de acordo com a cidade onde o docente leciona.
+  - Permitir a edição do calendário com a inclusão de novas datas.
+- **Prioridade:** P1
 
 
 ### **F3. Sistema de quórum para aprovação de turmas**
-- **Descrição:** Visualizar o número de matrículas estimadas e efetivadas para cada curso, com um esquema de cores para indicar o status de quórum. Ao atingir o quórum, deve ser possível notificar automaticamente a secretaria escolar.
+- **Descrição:** Visualizar o número de matrículas estimadas e efetivadas para cada curso. Ao atingir o ponto de equilíbrio de alunos (quórum), deve ser possível notificar automaticamente a secretaria escolar.
 - **Critérios de Aceitação:**
     - Visualizar o número de matrículas estimadas e realizadas por curso.
-    - Indicar os cursos que atingiram o quórum mínimo (verde).
-    - Enviar e-mail automatizado para a secretaria escolar quando o quórum for atingido.
-- **Prioridade:** P1 (Alta)
+    - Cadastrar o quórum para cada curso.
+    - Indicar os cursos que atingiram o quórum (verde).
+    - Opção de enviar um e-mail para a secretaria escolar quando o quórum for atingido.
+- **Prioridade:** P1 
 
 
 ### **F4. Alocação de docentes**
 - **Descrição:** Permitir a alocação manual de professores em cursos.
 - **Critérios de Aceitação:**
-  - Atribuir um novo professor ao curso.
-- **Prioridade:** P2 (Baixa)
+  - Atribuir ou modificar o docente de um curso.
+  - Caso haja diferença entre o docente alocado na plataforma e o registrado no SGSET, notificar o usuário do conflito, mas manter a atualização feita no software. 
+- **Prioridade:** P1
 
 
 ### **F5. Relatório de materiais por cursos**
 - **Descrição:** Gerar e exportar relatórios de materiais necessários para cada curso.
 - **Critérios de Aceitação:**
-  - Inserir materiais necessário para o curso (código, descrição e quantidade).
+  - Inserir materiais necessários para os cursos (campos por item: código, descrição e quantidade).
   - Calcular a quantidade total de materiais com base no número de alunos matriculados.
-  - Permitir exportação da lista de materiais por aluno em formato PDF.
-- **Prioridade:** P2 (Baixa)
+  - Permitir a exportação da lista de materiais por aluno em formato PDF.
+- **Prioridade:** P2 
 
 
 
