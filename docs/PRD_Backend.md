@@ -51,3 +51,31 @@ sequenceDiagram
     Banco ->> SistemaEspelho: [21] Envia dados
     SistemaEspelho ->> Usuário: [22] Visualização
 ```
+
+## 2 Visão Física
+
+```mermaid
+graph TD;
+    Usuario --> DOCKER[Docker Container];
+    DOCKER[Docker Container] --> SGSET;
+    
+    subgraph DOCKER
+        subgraph Backend_MVC
+            
+            View --> Service;
+            View --> Model;
+            Model --> Repositories;
+            Repositories --> BD_Postgres;
+        end
+        
+        subgraph Frontend_NextJS
+            
+            Pages --> Components;
+            Pages --Requisicaoo--> View;
+        end
+
+        BD_Postgres[(Banco de Dados)]
+
+    end;
+
+```
