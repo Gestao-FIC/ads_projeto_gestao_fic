@@ -82,15 +82,15 @@ Este sistema é direcionado principalmente para gestores do SENAI responsáveis 
 
 ### Casos de uso
 
-> **Caso de uso F1:** O Coordenador de Cursos acessa o sistema e visualiza um dashboard que apresenta gráficos referentes a quantidade de cursos finalizados, o total de matrículas e a receita gerada. Ele compara os valores atuais com as metas anuais e utiliza essas informações para tomar decisões estratégicas sobre o andamento das atividades, priorizando os cursos com menor desempenho e ajustando os planos para alcançar as metas.
+> **Caso de uso F1:** O coordenador de cursos ou o orientador de práticas profissionais o acessa o sistema e visualiza um dashboard que apresenta gráficos referentes a quantidade de cursos finalizados, o total de matrículas e a receita gerada. Ele compara os valores atuais com as metas anuais e utiliza essas informações para tomar decisões estratégicas sobre o andamento das atividades, priorizando os cursos com menor desempenho e ajustando os planos para alcançar as metas.
 
-> **Caso de uso F2:** O Coordenador seleciona um docente específico e visualiza seu calendário de aulas, que exibe as datas reservadas para cursos, feriados, emendas e eventos pessoais. Se necessário, ele pode editar o calendário, adicionando novas datas ou ajustando eventos já programados, garantindo a disponibilidade adequada do docente para lecionar.
+> **Caso de uso F2:** O coordenador seleciona um docente específico e visualiza seu calendário de aulas, que exibe as datas reservadas para cursos, feriados, emendas e eventos pessoais. Se necessário, ele pode editar o calendário, adicionando novas datas ou ajustando eventos já programados, garantindo a disponibilidade adequada do docente para lecionar.
 
-> **Caso de uso F3:** O Coordenador verifica o número de matrículas estimadas e realizadas para um curso específico no sistema. Ao constatar que o quórum mínimo foi atingido, o sistema destaca o curso em verde e permite o envio automático de uma notificação via e-mail para a secretaria escolar, confirmando a aprovação da turma.
+> **Caso de uso F3:** O coordenador verifica o número de matrículas estimadas e realizadas para um curso específico no sistema. Ao constatar que o quórum mínimo foi atingido, o sistema destaca o curso em verde e permite o envio automático de uma notificação via e-mail para a secretaria escolar, confirmando a aprovação da turma.
 
-> **Caso de uso F4:** O Coordenador acessa a lista de cursos e atribui manualmente um docente a um curso específico. Caso o curso possua um docente diferente registrado no SGSET, o sistema deve notificar o conflito, mas persistir a modificação manual.
+> **Caso de uso F4:** O coordenador acessa a lista de cursos e atribui manualmente um docente a um curso específico. Caso o curso possua um docente diferente registrado no SGSET, o sistema deve notificar o conflito, mas persistir a modificação manual.
 
-> **Caso de uso F5:** O Coordenador atribui um novo item à lista de material de um curso, inserindo o código, a descrição e a quantidade. O sistema calcula a quantidade total com base no número de alunos matriculados e permite a exportação da lista de materiais em formato PDF, facilitando a distribuição aos responsáveis.
+> **Caso de uso F5:** O coordenador atribui um novo item à lista de material de um curso, inserindo o código, a descrição e a quantidade. O sistema calcula a quantidade total com base no número de alunos matriculados e permite a exportação da lista de materiais em formato PDF, facilitando a distribuição aos responsáveis.
 
 
 
