@@ -82,15 +82,15 @@ Este sistema é direcionado principalmente para gestores do SENAI responsáveis 
 
 ### Casos de uso
 
-> **Caso de uso F1:** Lucas acessa o dashboard para obter uma visão geral do desempenho dos cursos. Ele visualiza gráficos que mostram o número de cursos lecionados, matrículas e a receita gerada. Ao comparar os valores atuais com as metas anuais, Lucas pode identificar áreas que precisam de atenção.
+> **Caso de uso F1:** O Coordenador de Cursos acessa o sistema e visualiza um dashboard que apresenta gráficos referentes a quantidade de cursos finalizados, o total de matrículas e a receita gerada. Ele compara os valores atuais com as metas anuais e utiliza essas informações para tomar decisões estratégicas sobre o andamento das atividades, priorizando os cursos com menor desempenho e ajustando os planos para alcançar as metas.
 
-> **Caso de uso F2:** Lucas deseja visualizar o calendário de um docente específico para planejar a alocação de aulas. Ele pode editar o calendário conforme necessário.
+> **Caso de uso F2:** O Coordenador seleciona um docente específico e visualiza seu calendário de aulas, que exibe as datas reservadas para cursos, feriados, emendas e eventos pessoais. Se necessário, ele pode editar o calendário, adicionando novas datas ou ajustando eventos já programados, garantindo a disponibilidade adequada do docente para lecionar.
 
-> **Caso de uso F3:** Lucas verifica o status de quórum das turmas, visualizando matrículas estimadas e efetivas. Quando uma turma atinge o quórum, ele pode notificar a secretaria escolar automaticamente.
+> **Caso de uso F3:** O Coordenador verifica o número de matrículas estimadas e realizadas para um curso específico no sistema. Ao constatar que o quórum mínimo foi atingido, o sistema destaca o curso em verde e permite o envio automático de uma notificação via e-mail para a secretaria escolar, confirmando a aprovação da turma.
 
-> **Caso de uso F4:** Lucas precisa alocar um docente a um curso específico. Ele utiliza a funcionalidade de alocação manual.
+> **Caso de uso F4:** O Coordenador acessa a lista de cursos e atribui manualmente um docente a um curso específico. Caso o curso possua um docente diferente registrado no SGSET, o sistema deve notificar o conflito, mas persistir a modificação manual.
 
-> **Caso de uso F5:** Lucas precisa gerar um relatório dos materiais necessários para um curso específico, incluindo a quantidade com base nas matrículas.
+> **Caso de uso F5:** O Coordenador atribui um novo item à lista de material de um curso, inserindo o código, a descrição e a quantidade. O sistema calcula a quantidade total com base no número de alunos matriculados e permite a exportação da lista de materiais em formato PDF, facilitando a distribuição aos responsáveis.
 
 
 
@@ -98,17 +98,48 @@ Este sistema é direcionado principalmente para gestores do SENAI responsáveis 
 
 ## Requisitos Não Funcionais
 
-1. **NF1**: O sistema deve ser capaz de lidar com até 500 turmas e 200 docentes simultaneamente. **P1**
-2. **NF2**: O sistema deve ser acessado por login integrado ao SG7, garantindo segurança para usuários autenticados. **P1**
-3. **NF3**: Relatórios exportáveis em PDF e Excel, compatíveis com as normas de formato do SENAI. **P2**
+### **N1. Segurança**
+- **Descrição:** O sistema deve utilizar a mesma autenticação do sistema legado SGSET, com atenção especial ao transporte seguro das credenciais entre os sistemas, garantindo a integridade e confidencialidade dos dados durante a transição.
+- **Caso de uso:** Ao fazer login no novo sistema, o Coordenador utiliza suas credenciais do SGSET. O sistema autentica o usuário, transportando as credenciais de forma segura entre os sistemas sem comprometer a integridade dos dados, permitindo que o Coordenador acesse as funcionalidades sem precisar de um novo cadastro.
 
-### 📊 Métricas
 
-| Medida | Estado atual | Esperado | Resultados |
-| --- | --- | --- | --- |
-| Tempo de carregamento |  | Máximo 2 segundos |  |
-| Quórum mínimo por turma |  | 51% |  |
-| Número de relatórios gerados |  | Mínimo 10 por mês |  |
+### **N2. Integridade dos Dados**
+- **Descrição:** O sistema deve garantir a integridade dos dados recebidos do sistema SGSET, sincronizando corretamente as informações entre os dois sistemas para evitar inconsistências.
+- **Caso de uso:** Quando o Coordenador acessa o sistema, ele visualiza as informações provenientes do SGSET, como os cursos ou o número de matrículas. 
+
+
+### **N3. Disponibilidade**
+- **Descrição:** O sistema deve estar disponível 99,9% do tempo, garantindo acesso contínuo, exceto durante manutenções programadas. Caso o sistema SGSET esteja indisponível, o sistema deve continuar funcionando e exibir a data e hora da última atualização dos dados, sem interromper o uso da aplicação.
+- **Caso de uso:** O Coordenador acessa o sistema em diferentes momentos do dia para realizar suas tarefas, sem interrupções, exceto em manutenções planejadas. Se o sistema SGSET estiver temporariamente fora do ar, o Coordenador ainda pode continuar usando o sistema visualizando claramente a data e hora da última sincronização sem impactar suas atividades.
+
+
+### **N4. Escalabilidade**
+- **Descrição:** O sistema deve ser escalável para suportar um aumento de até 50% no número de dados, sem degradação significativa do desempenho.
+- **Caso de uso:** A instituição amplia seu quadro de cursos e matrículas, resultando em um aumento significativo no número de dados processados. Mesmo com esse crescimento, o sistema continua funcionando de forma eficiente, sem quedas de desempenho.
+
+
+### **N5. Manutenibilidade**
+- **Descrição:** O sistema deve permitir a implementação de atualizações e correções de bugs de maneira eficiente, com impacto mínimo sobre os usuários.
+- **Caso de uso:** Durante uma atualização de rotina para melhorar o desempenho do dashboard, a equipe de TI realiza a manutenção sem que os usuários experimentem interrupções significativas, garantindo que as melhorias possam ser aplicadas rapidamente e sem problemas.
+
+
+### **N6. Compatibilidade**
+- **Métrica:** O sistema deve ser compatível com os principais navegadores (Chrome, Firefox, Safari, Edge).
+- **Tolerância:** 100% das funcionalidades principais devem estar disponíveis em todos os navegadores e dispositivos suportados, com no máximo 1% de falhas em dispositivos específicos.
+
+
+## 📊 Métricas
+
+| Medida                        | Esperado                  | Resultados                     |
+|-------------------------------|---------------------------|--------------------------------|
+| Segurança                     | 100% criptografia          |                                |
+| Integridade dos Dados         | 100% consistência          |                                |
+| Disponibilidade                | 99,9% uptime               |                                |
+| Escalabilidade                | Suportar 50% mais dados    |                                |
+| Manutenibilidade              | 95% sem impacto            |                                |
+| Compatibilidade               | 100% funcionalidade        |                                |
+
+
 
 ---
 
@@ -120,13 +151,13 @@ Este sistema é direcionado principalmente para gestores do SENAI responsáveis 
 
 ## User Experience
 
-🖍️ Link para fluxos UX/UI e protótipos: [Insira aqui o link para o fluxo UX]
+🖍️ [Link para o protótipo](https://www.figma.com/design/JiFxkPtXNBCjG1CGDuEBUG/GS7?node-id=0-1&t=rRbjzQz7rIeZv2Pp-1)
 
 ---
 
 ## Dependências
 
-⚠️ Acesso aos dados do SG7, especialmente o calendário de cursos e docentes, é essencial para o funcionamento do sistema.
+⚠️ Acesso aos dados do SG7, especialmente os cursos e docentes, é essencial para o funcionamento do sistema.
 
 ---
 
@@ -136,8 +167,4 @@ Este sistema é direcionado principalmente para gestores do SENAI responsáveis 
     - [ ] Validação com o cliente.
 
 
----
 
-## 💌 Plano de comunicação
-
-Comunicações serão feitas via e-mail e notificações no sistema para todos os gestores e assistentes administrativos. Uma série de e-mails será enviada informando sobre a aprovação de turmas, mudanças no calendário e relatórios gerados.
