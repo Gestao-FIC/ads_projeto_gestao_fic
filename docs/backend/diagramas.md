@@ -77,5 +77,17 @@ graph TD;
         BD_Postgres[(Banco de Dados)]
 
     end;
+```
 
+
+## 2 Visão de Desenvolvimento
+
+```mermaid
+graph TD
+    B[home_view.py] --> B4[calendar_service.py] --> B2[repository]
+    B[home_view.py] --> B5[report_service.py] --> B2[repository]
+    B[home_view.py] --> B6[login_service.py] --> B2[repository]
+    B[home_view.py] --> B7[refresh_service.py] --> B2[repository]
+    B[home_view.py] --> B3[dashboard_service.py] --> B2[repository]
+    B2[course_repository] --> B1[course_model.py]
 ```
