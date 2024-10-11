@@ -7,7 +7,7 @@ class AuthService:
     def authenticate_user(username, password):
         user = authenticate(username=username, password=password)
         if not user or not user.is_active:
-            raise AuthenticationFailed("Credenciais inválidas ou usuário inativo.")
+            raise AuthenticationFailed("Credenciais inválidas ou usuário não encontrado.")
 
         token, _ = Token.objects.get_or_create(user=user)
         return token
