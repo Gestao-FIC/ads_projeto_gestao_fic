@@ -1,77 +1,67 @@
-import React from 'react';
-import { FaUser, FaLock } from 'react-icons/fa'; // Importando os ícones
+import React from "react";
+import { FaUser, FaLock } from "react-icons/fa"; // Importando os ícones
+import { Input } from "@/components/ui/Input";
+import { Button } from "@/components/ui/button";
 
 const Login = () => {
   return (
     <div className="flex h-screen">
-      <div className="w-1/2 bg-purple-100 flex items-center justify-center overflow-hidden rounded-lg">
+      <div className="w-1/2 bg-slate-200 flex items-center justify-center overflow-hidden ">
         <img
           src="/images/Lucas.jpg"
           alt="Ilustração de fábrica"
-          className="w-full h-auto max-h-screen object-cover rounded-lg"
+          className="w-full h-screen max-h-screen object-cover"
           style={{
-            clipPath: 'polygon(20% 0%, 100% 10%, 80% 100%, 0% 90%)',
-            transform: 'scale(1.1)',
+            borderRadius: "25% 10% 40% 0 ",
           }}
         />
       </div>
-      <div className="w-1/2 bg-gradient-to-r from-purple-200 to-indigo-300 flex flex-col justify-center px-12">
-        <div className="max-w-sm mx-auto">
-          <h1 className="text-3xl font-bold text-gray-700 mb-6">
-            Bem-vindo de volta ao
-          </h1>
-          <h2 className="text-4xl font-bold text-gray-900 mb-12">SGSET</h2>
+      <div className="w-1/2 bg-gradient-to-r from-slate-200 to-slate-400 flex flex-col justify-center px-16 py-8">
+        <div className="max-w-md mx-auto">
+          <div className="flex-1 text-center">
+            <h1 className="text-4xl font-bold text-gray-700 mb-8">
+              Bem-vindo de volta ao
+            </h1>
+            <h2 className="text-5xl font-bold text-gray-900 mb-16">SGSET</h2>
+          </div>
 
           {/* Formulário */}
-          <form>
-            <div className="mb-4 relative">
-              <label className="block text-gray-700 text-sm mb-2" htmlFor="username">
-                Usuário
-              </label>
-              <div className="flex items-center border rounded-lg bg-gray-100">
-                <span className="px-3">
-                  <FaUser className="text-gray-500" /> {/* Ícone do usuário */}
-                </span>
-                <input
-                  type="text"
-                  id="username"
-                  className="w-full px-4 py-2 bg-transparent focus:outline-none focus:border-blue-500"
-                  placeholder="Usuário"
-                />
+          <form className="">
+            <div className="mt-8">
+              <label className="text-lg">Usuário:</label>
+              <Input
+                type="text"
+                id="username"
+                className="w-full rounded-xl px-6 py-3 bg-white focus:outline-none focus:border-slate-600 text-lg"
+                placeholder="Usuário"
+              />
+            </div>
+            <div className="mt-8">
+              <label className="text-lg">Senha:</label>
+              <Input
+                type="password"
+                id="password"
+                className="w-full rounded-xl px-6 py-3 bg-white focus:outline-none focus:border-slate-600 text-lg"
+                placeholder="*********"
+              />
+            </div>
+
+            <div className="flex items-center justify-between mt-8">
+              <div className="flex items-center text-gray-700">
+                <Input type="checkbox" className="mr-3 h-7 w-7" />
+                <label className="text-lg">Lembrar de mim</label>
               </div>
+              <a href="#" className="text-lg text-blue-500">
+                Recuperar a senha?
+              </a>
             </div>
 
-            <div className="mb-6 relative">
-              <label className="block text-gray-700 text-sm mb-2" htmlFor="password">
-                Senha
-              </label>
-              <div className="flex items-center border rounded-lg bg-gray-100">
-                <span className="px-3">
-                  <FaLock className="text-gray-500" /> {/* Ícone da senha */}
-                </span>
-                <input
-                  type="password"
-                  id="password"
-                  className="w-full px-4 py-2 bg-transparent focus:outline-none focus:border-blue-500"
-                  placeholder="Senha"
-                />
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between mb-6">
-              <label className="flex items-center text-gray-700">
-                <input type="checkbox" className="mr-2" />
-                Lembrar de mim
-              </label>
-              <a href="#" className="text-blue-500">Recuperar a senha?</a>
-            </div>
-
-            <button
+            <Button
               type="submit"
-              className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300"
+              className="w-full text-white py-3 rounded-lg hover:bg-slate-600 transition duration-300 mt-8 text-lg"
             >
               Login
-            </button>
+            </Button>
           </form>
         </div>
       </div>
