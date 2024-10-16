@@ -1,14 +1,17 @@
 import React from "react";
-import { FaUser, FaLock } from "react-icons/fa"; // Importando os ícones
-import { Input } from "@/components/ui/Input";
+import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import Link from "next/link";
 
 const Login = () => {
   return (
     <div className="flex h-screen">
       <div className="w-1/2 bg-slate-200 flex items-center justify-center overflow-hidden ">
-        <img
-          src="/images/Lucas.jpg"
+        <Image
+          src={"/images/Lucas.jpg"}
+          height={774}
+          width={816}
           alt="Ilustração de fábrica"
           className="w-full h-screen max-h-screen object-cover"
           style={{
@@ -42,26 +45,24 @@ const Login = () => {
                 type="password"
                 id="password"
                 className="w-full rounded-xl px-6 py-3 bg-white focus:outline-none focus:border-slate-600 text-lg"
-                placeholder="*********"
+                placeholder="Senha"
               />
             </div>
 
             <div className="flex items-center justify-between mt-8">
-              <div className="flex items-center text-gray-700">
-                <Input type="checkbox" className="mr-3 h-7 w-7" />
-                <label className="text-lg">Lembrar de mim</label>
-              </div>
               <a href="#" className="text-lg text-blue-500">
                 Recuperar a senha?
               </a>
             </div>
 
-            <Button
-              type="submit"
-              className="w-full text-white py-3 rounded-lg hover:bg-slate-600 transition duration-300 mt-8 text-lg"
-            >
-              Login
-            </Button>
+            <Link href={"/"}>
+              <Button
+                type="submit"
+                className="w-full text-white py-3 rounded-lg hover:bg-slate-600 transition duration-300 mt-8 text-lg"
+              >
+                Login
+              </Button>
+            </Link>
           </form>
         </div>
       </div>
