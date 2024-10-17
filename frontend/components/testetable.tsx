@@ -40,86 +40,101 @@ const data: Payment[] = [
   {
     id: "m5gr84i9",
     amount: 316,
-    status: "success",
-    email: "ken99@yahoo.com",
+    turmas: "ken99@yahoo.com",
+    cursos: "testes",
+    docentes: "docente",
+    turno: "T",
+    matriculas: " ",
+    quorum: 30,
   },
   {
     id: "3u1reuv4",
     amount: 242,
-    status: "success",
-    email: "Abe45@gmail.com",
+    turmas: "Abe45@gmail.com",
+    cursos: "testes",
+    docentes: "docente",
+    turno: "T",
+    matriculas: " ",
+    quorum: 30,
   },
   {
     id: "derv1ws0",
     amount: 837,
-    status: "processing",
-    email: "Monserrat44@gmail.com",
+    turmas: "Monserrat44@gmail.com",
+    cursos: "testes",
+    docentes: "docente",
+    turno: "T",
+    matriculas: " ",
+    quorum: 30,
   },
   {
     id: "5kma53ae",
     amount: 874,
-    status: "success",
-    email: "Silas22@gmail.com",
+    turmas: "Silas22@gmail.com",
+    cursos: "testes",
+    docentes: "docente",
+    turno: "T",
+    matriculas: " ",
+    quorum: 30,
   },
   {
     id: "bhqecj4p",
     amount: 721,
-    status: "failed",
-    email: "carmella@hotmail.com",
+    turmas: "carmella@hotmail.com",
+    cursos: "testes",
+    docentes: "docente",
+    turno: "T",
+    matriculas: " ",
+    quorum: 30,
   },
 ]
 
 export type Payment = {
   id: string
   amount: number
-  status: "pending" | "processing" | "success" | "failed"
-  email: string
+  cursos: string
+  turmas: string
+  docentes: string
+  turno: "M" | "T" | "N"
+  matriculas: string
+  quorum: number
 }
 
 export const columns: ColumnDef<Payment>[] = [
   {
-    id: "select",
-    header: ({ table }) => (
-      <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && "indeterminate")
-        }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-      />
-    ),
+    accessorKey: "cursos",
+    header: "Curso",
     cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
-      />
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  },
-  {
-    accessorKey: "status",
-    header: "Status",
-    cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("status")}</div>
+      <div className="capitalize">{row.getValue("cursos")}</div>
     ),
   },
   {
-    accessorKey: "email",
+    accessorKey: "turmas",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Email
-          <ArrowUpDown className="ml-2 h-4 w-4" />
+          Turmas
         </Button>
       )
     },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
+    cell: ({ row }) => <div className="lowercase">{row.getValue("turmas")}</div>,
+  },
+  {
+    accessorKey: "docentes",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Docentes
+        </Button>
+      )
+    },
+    cell: ({ row }) => <div className="lowercase">{row.getValue("docentes")}</div>,
   },
   {
     accessorKey: "amount",
@@ -127,7 +142,6 @@ export const columns: ColumnDef<Payment>[] = [
     cell: ({ row }) => {
       const amount = parseFloat(row.getValue("amount"))
 
-      // Format the amount as a dollar amount
       const formatted = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
@@ -165,6 +179,28 @@ export const columns: ColumnDef<Payment>[] = [
       )
     },
   },
+  {
+    id: "select",
+    header: ({ table }) => (
+      <Checkbox
+        checked={
+          table.getIsAllPageRowsSelected() ||
+          (table.getIsSomePageRowsSelected() && "indeterminate")
+        }
+        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+        aria-label="Select all"
+      />
+    ),
+    cell: ({ row }) => (
+      <Checkbox
+        checked={row.getIsSelected()}
+        onCheckedChange={(value) => row.toggleSelected(!!value)}
+        aria-label="Select row"
+      />
+    ),
+    enableSorting: false,
+    enableHiding: false,
+  },
 ]
 
 export function DataTableDemo() {
@@ -199,10 +235,10 @@ export function DataTableDemo() {
     <div className="w-full">
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter emails..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+          placeholder="Filter turmas..."
+          value={(table.getColumn("turmas")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
+            table.getColumn("turmas")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
