@@ -1,7 +1,10 @@
+import DashCalendar from "@/components/DashCalendar";
+
 export default function Dashboard() {
   return (
-    <div className="h-full w-full text-center content-center bg-secondary">
-      Dashboard
+    <div className="flex flex-row h-full w-full bg-secondary">
+      <div className="flex-1">clean</div>
+      <DashCalendar />
     </div>
   );
 }
