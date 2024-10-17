@@ -1,0 +1,4 @@
+url: "https://sgset.sp.senai.br/Consultas/Resultado.aspx?Processo='Resultado%20-%20Oferta%20-%20Anal%C3%ADtico'&Controle=3&Visao=183&Titulo=Consulta%20FIC&Xml='%3CBusca%3E%3CDados%20Colunas=%2212,15,16,22,5,21,75,77,53,54%22%20Tipo=%220%22%20Esco=%22402%22%20PerDe=%2201/01/2024%22%20PerAte=%2231/12/2024%22%3E%3C/Dados%3E%3C/Busca%3E'"
+edge_driver_path: "../../tools/edgedriver_win64/msedgedriver.exe"
+destination_folder: "../../data"
+timeout: 120
