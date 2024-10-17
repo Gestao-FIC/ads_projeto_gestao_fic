@@ -22,10 +22,9 @@ class Group(models.Model):
         actual_enrollments (IntegerField): Actual number of students enrolled.
         quorum (IntegerField): Minimum number of students required (optional).
     """
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    code = models.CharField(primary_key=True, max_length=20)
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='classes')
     teacher = models.ForeignKey(Teacher, on_delete=models.SET_NULL, null=True, related_name='classes')
-    code = models.CharField(max_length=20, unique=True)
     shift = models.CharField(max_length=20)
     modality = models.CharField(max_length=50)
     period_from = models.DateField()
