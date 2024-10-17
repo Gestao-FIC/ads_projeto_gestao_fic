@@ -1,4 +1,5 @@
-from .curso_model import CursoModel
-from .docente_model import DocenteModel
-from .matricula_model import MatriculaModel
-# from .quorun_model import QuorumModel
+from .group import Group
+from .class_day_schedule import ClassDaySchedule
+from .course import Course
+from .teacher import Teacher
+from .day_of_week import DayOfWeek
