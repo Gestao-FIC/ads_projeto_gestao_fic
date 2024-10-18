@@ -1,6 +1,7 @@
 from django.db import models
 from .course import Course
 
+
 class CourseClass(models.Model):
     """
     Represents a specific class within a course.
@@ -29,19 +30,26 @@ class CourseClass(models.Model):
         ('cancelado', 'Cancelado'),
     ]
 
-    code = models.CharField(primary_key=True, max_length=20, verbose_name='Class Code')
+    code = models.CharField(
+        primary_key=True, max_length=20, verbose_name='Class Code')
     course = models.ForeignKey(
         Course, on_delete=models.CASCADE, related_name='classes', verbose_name='Course'
     )
-    shift = models.CharField(max_length=20, verbose_name='Shift')
-    modality = models.CharField(max_length=50, verbose_name='Modality')
-    attendance = models.CharField(max_length=50, verbose_name='Attendance')
-    period_from = models.DateField(verbose_name='Start Date')
-    period_to = models.DateField(verbose_name='End Date')
-    start_time = models.TimeField(verbose_name='Start Time')
-    end_time = models.TimeField(verbose_name='End Time')
-    estimated_enrollments = models.IntegerField(verbose_name='Estimated Enrollments')
-    actual_enrollments = models.IntegerField(verbose_name='Actual Enrollments')
+    shift = models.CharField(null=True, max_length=20, verbose_name='Shift')
+    duration = models.IntegerField(
+        null=True, verbose_name='Duration')
+    modality = models.CharField(
+        max_length=50, null=True, verbose_name='Modality')
+    attendance = models.CharField(
+        max_length=50, null=True, verbose_name='Attendance')
+    period_from = models.DateField(null=True, verbose_name='Start Date')
+    period_to = models.DateField(null=True, verbose_name='End Date')
+    start_time = models.TimeField(null=True, verbose_name='Start Time')
+    end_time = models.TimeField(null=True, verbose_name='End Time')
+    estimated_enrollments = models.IntegerField(
+        null=True, verbose_name='Estimated Enrollments')
+    actual_enrollments = models.IntegerField(
+        null=True, verbose_name='Actual Enrollments')
     quorum = models.IntegerField(
         null=True, blank=True, verbose_name='Minimum Quorum'
     )
@@ -56,7 +64,7 @@ class CourseClass(models.Model):
         null=True,
         verbose_name='Income from Enrollments'
     )
-  
+
     class Meta:
         verbose_name = 'Course Class'
         verbose_name_plural = 'Course Classes'
