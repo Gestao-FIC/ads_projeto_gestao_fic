@@ -1,7 +1,7 @@
 import uuid
 from django.db import models
-from course_class import CourseClass
-from day_of_week import DayOfWeek
+from .course_class import CourseClass
+from .day_of_week import DayOfWeek
 
 
 class ClassSchedule(models.Model):
