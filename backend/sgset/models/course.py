@@ -17,6 +17,7 @@ class Course(models.Model):
     price_per_student = models.DecimalField(
         max_digits=10, 
         decimal_places=2, 
+        null=True,
         verbose_name="Price per Student"
     )
 
