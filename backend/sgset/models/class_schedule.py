@@ -1,24 +1,20 @@
 import uuid
 from django.db import models
-from sgset.models.group import Group
+from backend.sgset.models.course_class import Group
 from sgset.models.day_of_week import DayOfWeek
 
 
-class ClassDaySchedule(models.Model):
+class ClassSchedule(models.Model):
     """Represents a specific class schedule for a given day of the week.
 
     Attributes:
         id (UUIDField): Unique identifier for the schedule entry (primary key).
         class_instance (ForeignKey): Reference to the related class.
         day_of_week (ForeignKey): Reference to the corresponding day of the week.
-        start_time (TimeField): Start time for the class on this day.
-        end_time (TimeField): End time for the class on this day.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     class_instance = models.ForeignKey(Group, on_delete=models.CASCADE, related_name='day_schedules')
     day_of_week = models.ForeignKey(DayOfWeek, on_delete=models.CASCADE, related_name='class_schedules')
-    start_time = models.TimeField()
-    end_time = models.TimeField()
 
     def __str__(self) -> str:
         """Returns a string representation of the class schedule.
