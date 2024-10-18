@@ -1,6 +1,6 @@
 from django.db import models
-from instructor import Instructor
-from course_class import CourseClass
+from .instructor import Instructor
+from .course_class import CourseClass
 
 
 class InstructorClass(models.Model):
