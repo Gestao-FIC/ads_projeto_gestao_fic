@@ -10,6 +10,7 @@ class CourseClassModel(models.Model):
         code (CharField): Unique code identifying the class (primary key, e.g., 'CQ.AJUS.N-1').
         course (ForeignKey): Reference to the related course.
         shift (CharField): Time of day when the class occurs (e.g., 'Evening').
+        duration (IntegerField): Class total duration in hours (e.g., '30'). 
         modality (CharField): Type or modality of the class (e.g., 'In-person').
         period_from (DateField): Start date of the class period.
         period_to (DateField): End date of the class period.
