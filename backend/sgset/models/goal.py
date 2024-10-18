@@ -1,7 +1,8 @@
 import uuid
 from django.db import models
 
-class Goal(models.Model):
+
+class GoalModel(models.Model):
     """
     Model to represent goals for specific years.
 
@@ -37,8 +38,8 @@ class Goal(models.Model):
         choices=GOAL_CHOICES,
         verbose_name='Goal Type'
     )
-    value = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Value')
-
+    value = models.DecimalField(
+        max_digits=10, decimal_places=2, verbose_name='Value')
 
     class Meta:
         verbose_name = 'Goal'

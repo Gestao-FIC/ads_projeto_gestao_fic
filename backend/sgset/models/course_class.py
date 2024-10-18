@@ -1,8 +1,8 @@
 from django.db import models
-from .course import Course
+from .course import CourseModel
 
 
-class CourseClass(models.Model):
+class CourseClassModel(models.Model):
     """
     Represents a specific class within a course.
 
@@ -33,7 +33,7 @@ class CourseClass(models.Model):
     code = models.CharField(
         primary_key=True, max_length=20, verbose_name='Class Code')
     course = models.ForeignKey(
-        Course, on_delete=models.CASCADE, related_name='classes', verbose_name='Course'
+        CourseModel, on_delete=models.CASCADE, related_name='classes', verbose_name='Course'
     )
     shift = models.CharField(null=True, max_length=20, verbose_name='Shift')
     duration = models.IntegerField(

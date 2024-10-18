@@ -1,7 +1,8 @@
 import uuid
 from django.db import models
 
-class Instructor(models.Model):
+
+class InstructorModel(models.Model):
     """
     Represents a teacher or instructor responsible for classes.
 
@@ -19,7 +20,8 @@ class Instructor(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=100, verbose_name='Instructor Name')
-    source = models.CharField(max_length=10, choices=SOURCE_CHOICES, verbose_name='Source')
+    source = models.CharField(
+        max_length=10, choices=SOURCE_CHOICES, verbose_name='Source')
 
     class Meta:
         verbose_name = 'Instructor'

@@ -1,10 +1,10 @@
 import uuid
 from django.db import models
-from .course_class import CourseClass
-from .day_of_week import DayOfWeek
+from .course_class import CourseClassModel
+from .day_of_week import DayOfWeekModel
 
 
-class ClassSchedule(models.Model):
+class ClassScheduleModel(models.Model):
     """Represents a specific class schedule for a given day of the week.
 
     Attributes:
@@ -13,8 +13,10 @@ class ClassSchedule(models.Model):
         day_of_week (ForeignKey): Reference to the corresponding day of the week.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    class_instance = models.ForeignKey(CourseClass, on_delete=models.CASCADE, related_name='day_schedules')
-    day_of_week = models.ForeignKey(DayOfWeek, on_delete=models.CASCADE, related_name='class_schedules')
+    class_instance = models.ForeignKey(
+        CourseClassModel, on_delete=models.CASCADE, related_name='day_schedules')
+    day_of_week = models.ForeignKey(
+        DayOfWeekModel, on_delete=models.CASCADE, related_name='class_schedules')
 
     def __str__(self) -> str:
         """Returns a string representation of the class schedule.

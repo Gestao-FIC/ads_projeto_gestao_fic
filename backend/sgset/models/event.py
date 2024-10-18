@@ -1,7 +1,8 @@
 import uuid
 from django.db import models
 
-class Event(models.Model):
+
+class EventModel(models.Model):
     """
     Model to represent date reservations.
 
