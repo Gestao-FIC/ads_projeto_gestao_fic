@@ -1,13 +1,31 @@
-import React from "react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
-import Link from "next/link";
+'use client';
+
+import React, { useState } from 'react';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import Image from 'next/image';
+import { loginUser } from '@/services/authService';
+import { useRouter } from 'next/navigation';
 
 const Login = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const router = useRouter();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const data = await loginUser(username, password);
+      console.log('Login bem-sucedido:', data);
+      router.push('/');
+    } catch (error) {
+      console.error('Erro:', error);
+    }
+  };
+
   return (
     <div className="flex h-screen">
-      <div className="w-1/2 bg-slate-200 flex items-center justify-center overflow-hidden ">
+      <div className="w-1/2 bg-slate-200 flex items-center justify-center overflow-hidden">
         <Image
           src={"/images/Lucas.jpg"}
           height={774}
@@ -15,7 +33,7 @@ const Login = () => {
           alt="Ilustração de fábrica"
           className="w-full h-screen max-h-screen object-cover"
           style={{
-            borderRadius: "25% 10% 40% 0 ",
+            borderRadius: '25% 10% 40% 0',
           }}
         />
       </div>
@@ -29,7 +47,7 @@ const Login = () => {
           </div>
 
           {/* Formulário */}
-          <form className="">
+          <form onSubmit={handleSubmit}>
             <div className="mt-8">
               <label className="text-lg">Usuário:</label>
               <Input
@@ -37,6 +55,8 @@ const Login = () => {
                 id="username"
                 className="w-full rounded-xl px-6 py-3 bg-white focus:outline-none focus:border-slate-600 text-lg"
                 placeholder="Usuário"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
               />
             </div>
             <div className="mt-8">
@@ -46,6 +66,8 @@ const Login = () => {
                 id="password"
                 className="w-full rounded-xl px-6 py-3 bg-white focus:outline-none focus:border-slate-600 text-lg"
                 placeholder="Senha"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
 
@@ -55,14 +77,12 @@ const Login = () => {
               </a>
             </div>
 
-            <Link href={"/"}>
-              <Button
-                type="submit"
-                className="w-full text-white py-3 rounded-lg hover:bg-slate-600 transition duration-300 mt-8 text-lg"
-              >
-                Login
-              </Button>
-            </Link>
+            <Button
+              type="submit"
+              className="w-full text-white py-3 rounded-lg hover:bg-slate-600 transition duration-300 mt-8 text-lg"
+            >
+              Login
+            </Button>
           </form>
         </div>
       </div>
