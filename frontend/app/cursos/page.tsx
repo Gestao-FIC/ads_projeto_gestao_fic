@@ -1,6 +1,6 @@
 "use client";
 
-import { DataTableDemo } from "@/components/testetable";
+import { DataTableDemo } from "@/components/coursesTable";
 import React from "react";
 import { CourseDetails } from "@/components/CourseDetails";
 
