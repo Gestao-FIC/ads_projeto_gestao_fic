@@ -268,6 +268,7 @@ export const columns: ColumnDef<Payment>[] = [
     cell: ({ row }) => (
       <div className="text-center uppercase">{row.getValue("turno")}</div>
     ),
+    size: 50, // Largura ajustada da coluna
   },
   {
     accessorKey: "matriculas",
@@ -275,6 +276,7 @@ export const columns: ColumnDef<Payment>[] = [
     cell: ({ row }) => (
       <div className="text-center">{row.getValue("matriculas")}</div>
     ),
+    size: 80, // Largura ajustada da coluna para melhorar responsividade
   },
   {
     accessorKey: "quorum",
@@ -292,16 +294,17 @@ export const columns: ColumnDef<Payment>[] = [
         </div>
       );
     },
+    size: 80, // Largura ajustada da coluna para melhorar responsividade
   },
 ];
 
-export function DataTableDemo({ onCourseSelect }) {
+export function DataTableDemo({ onCourseSelect, showDetails }) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   );
   const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({});
+  React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
 
   const handleRowClick = (row: Payment) => {
@@ -330,8 +333,9 @@ export function DataTableDemo({ onCourseSelect }) {
   });
 
   return (
-    <div className="w-full flex">
-      <div className="flex-1">
+    <div className="flex w-full">
+      {/* Ajuste de largura do contêiner da tabela */}
+      <div className={`transition-all duration-300 ${showDetails ? "w-2/3" : "w-full"}`}>
         <div className="flex items-center py-4">
           <Input
             placeholder="Filtrar turmas..."
@@ -351,31 +355,25 @@ export function DataTableDemo({ onCourseSelect }) {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               {table
-                .getAllColumns()
+              .getAllColumns()
                 .filter((column) => column.getCanHide())
-                .map((column) => {
-                  return (
-                    <DropdownMenuCheckboxItem
-                      key={column.id}
-                      className="capitalize"
-                      checked={column.getIsVisible()}
-                      onCheckedChange={(value) =>
-                        column.toggleVisibility(!!value)
-                      }
-                    >
-                      {column.id}
-                    </DropdownMenuCheckboxItem>
-                  );
-                })}
+                .map((column) => (
+                  <DropdownMenuCheckboxItem
+                    key={column.id}
+                    className="capitalize"
+                    checked={column.getIsVisible()}
+                    onCheckedChange={(value) => column.toggleVisibility(!!value)}
+                  >
+                    {column.id}
+                  </DropdownMenuCheckboxItem>
+                ))}
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
 
-        {/* Contêiner com rolagem no corpo da tabela */}
-        <div className="rounded-md border bg-gray-50 p-2">
-          <div className="max-h-[450px] overflow-y-auto">
+        <div className="rounded-md border bg-gray-50 text-xs">
+          <div className="max-h-[300px] overflow-y-auto">
             <table className="table-fixed w-full">
-              {/* Cabeçalho da tabela */}
               <thead className="bg-gray-200 sticky top-0 z-10">
                 {table.getHeaderGroups().map((headerGroup) => (
                   <tr key={headerGroup.id}>
@@ -383,14 +381,11 @@ export function DataTableDemo({ onCourseSelect }) {
                       <th
                         key={header.id}
                         className="px-2 py-4 text-center"
-                        style={{ width: header.getSize() || "auto" }} // Definir largura das colunas
+                        style={{ width: header.column.columnDef.size || "auto" }}
                       >
                         {header.isPlaceholder
                           ? null
-                          : flexRender(
-                              header.column.columnDef.header,
-                              header.getContext()
-                            )}
+                          : flexRender(header.column.columnDef.header, header.getContext())}
                       </th>
                     ))}
                   </tr>
@@ -411,12 +406,9 @@ export function DataTableDemo({ onCourseSelect }) {
                         <td
                           key={cell.id}
                           className="px-2 py-4"
-                          style={{ width: cell.column.getSize() || "auto" }} // Definir largura das colunas
+                          style={{ width: cell.column.columnDef.size || "auto" }} // Definir largura das colunas
                         >
-                          {flexRender(
-                            cell.column.columnDef.cell,
-                            cell.getContext()
-                          )}
+                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
                         </td>
                       ))}
                     </tr>
@@ -433,6 +425,13 @@ export function DataTableDemo({ onCourseSelect }) {
           </div>
         </div>
       </div>
+
+      {/* Painel de Detalhes */}
+      {showDetails && (
+        <div className="w-1/3 bg-gray-800 text-white p-4 transition-all duration-300">
+          <CourseDetails />
+        </div>
+      )}
     </div>
   );
 }
