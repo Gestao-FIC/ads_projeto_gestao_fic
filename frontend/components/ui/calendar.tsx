@@ -1,13 +1,9 @@
-"use client";
-
 import * as React from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { DayPicker } from "react-day-picker";
-
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 
-// Definindo o tipo de propriedades do calendário
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 
 function Calendar({
@@ -19,51 +15,43 @@ function Calendar({
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
-      className={cn("p-3 bg-primary-foreground", className)} // Adicionada classe de fundo
+      className={cn("p-3 bg-primary-foreground", className)}
       classNames={{
-        months: "flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0", // Meses
-        month: "space-y-4", // Espaçamento entre meses
-        caption: "flex justify-center pt-1 relative items-center", // Cabeçalho do calendário
-        caption_label: "text-sm font-medium text-primary", // Texto do cabeçalho
-        nav: "space-x-1 flex items-center", // Navegação
+        months: "space-y-4",
+        month: "space-y-4",
+        caption: "flex justify-center pt-1 relative items-center",
+        caption_label: "text-xl font-medium text-primary",
+        nav: "space-x-1 flex items-center",
         nav_button: cn(
           buttonVariants({ variant: "outline" }),
-          "h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100 text-primary" // Botões de navegação
+          "h-12 w-12 bg-transparent p-0 opacity-50 hover:opacity-100 text-primary"
         ),
-        nav_button_previous: "absolute left-1", // Botão anterior
-        nav_button_next: "absolute right-1", // Botão seguinte
-        table: "w-full border-collapse space-y-1", // Tabela do calendário
-        head_row: "flex", // Linha de cabeçalho
-        head_cell: "text-foreground rounded-md w-9 font-normal text-[0.8rem]", // Célula de cabeçalho
-        row: "flex w-full mt-2", // Linha do calendário
-        cell: "h-9 w-9 text-center text-sm p-0 relative [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-muted [&:has([aria-selected])]:bg-muted first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20", // Célula de dia
+        nav_button_previous: "absolute left-1",
+        nav_button_next: "absolute right-1",
+        table: "w-full border-collapse space-y-1",
+        head_row: "flex",
+        head_cell: "text-foreground rounded-md w-16 font-normal text-lg",
+        row: "flex w-full mt-2",
+        cell: "h-16 w-16 text-center text-lg p-0 relative",
         day: cn(
           buttonVariants({ variant: "ghost" }),
-          "h-9 w-9 p-0 font-normal aria-selected:opacity-100 text-foreground" // Dia
+          "h-16 w-16 p-0 font-normal aria-selected:opacity-100 text-foreground text-lg"
         ),
-        day_range_end: "day-range-end", // Final do intervalo de dias
-        day_selected: "bg-accent text-accent-foreground", // Dia selecionado
-        day_today: "bg-secondary text-secondary-foreground", // Dia atual
-        day_outside:
-          "day-outside text-muted-foreground opacity-50 aria-selected:bg-muted aria-selected:text-muted-foreground aria-selected:opacity-30", // Dia fora do mês
-        day_disabled: "text-muted-foreground opacity-50", // Dia desabilitado
-        day_range_middle:
-          "aria-selected:bg-muted aria-selected:text-muted-foreground", // Meio do intervalo de dias
-        day_hidden: "invisible", // Dia oculto
+        day_selected: "bg-primary/10 text-accent-foreground",
+        day_today: "bg-primary/5 text-secondary-foreground",
+        day_outside: "day-outside text-muted-foreground opacity-50",
+        day_disabled: "text-muted-foreground opacity-50",
+        day_hidden: "invisible",
         ...classNames,
       }}
       components={{
-        IconLeft: ({ ...props }) => (
-          <ChevronLeft className="h-4 w-4 text-foreground" />
-        ), // Ícone de seta para a esquerda
-        IconRight: ({ ...props }) => (
-          <ChevronRight className="h-4 w-4 text-foreground" />
-        ), // Ícone de seta para a direita
+        IconLeft: () => <ChevronLeft className="h-5 w-5 text-foreground" />,
+        IconRight: () => <ChevronRight className="h-5 w-5 text-foreground" />,
       }}
       {...props}
     />
   );
 }
-Calendar.displayName = "Calendário";
+Calendar.displayName = "Calendar";
 
 export { Calendar };
