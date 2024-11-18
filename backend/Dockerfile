@@ -4,15 +4,6 @@ FROM python:3.11-slim
 # Definir diretório de trabalho dentro do container
 WORKDIR /app
 
-# Instalar dependências do sistema
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    libffi-dev \
-    libssl-dev \
-    libpq-dev \
-    python3-dev \
-    && rm -rf /var/lib/apt/lists/*
-
 # Copiar o arquivo requirements.txt para dentro do container
 COPY requirements.txt .
 
