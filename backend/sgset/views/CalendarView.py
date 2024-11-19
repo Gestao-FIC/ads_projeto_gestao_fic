@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from ..serializers import EventSerializer
+from sgset.serializers.EventSerializer import EventSerializer
 from ..services.GeneralCalendar import CalendarService
 
 class CalendarView(APIView):
