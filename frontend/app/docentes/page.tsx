@@ -1,10 +1,11 @@
+import EducatorCalendar from "@/components/EducatorCalendar";
 import React from "react";
-import { DocentesTable } from "@/components/docentestable";
 
 export default function Docentes() {
   return (
-    <div className="h-full w-full text-center content-center bg-secondary">
-    <DocentesTable/>
+    <div className="flex h-screen">
+      <div className="flex-1"></div>
+      <EducatorCalendar />
     </div>
   );
 }
