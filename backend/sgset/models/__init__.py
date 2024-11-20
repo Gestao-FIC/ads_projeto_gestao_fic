@@ -3,6 +3,6 @@ from .course_class import CourseClassModel
 from .course import CourseModel
 from .day_of_week import DayOfWeekModel
 from .event import EventModel
-from .goal import GoalModel
+from .goal import Goal
 from .instructor_class import InstructorClassModel
 from .instructor import InstructorModel
