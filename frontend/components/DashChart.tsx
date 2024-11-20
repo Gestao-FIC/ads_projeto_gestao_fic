@@ -9,7 +9,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 
-import { teacherData } from "@/lib/mock";
+import { teacherData } from "@/mocks/mock";
 
 const chartData = teacherData;
 
