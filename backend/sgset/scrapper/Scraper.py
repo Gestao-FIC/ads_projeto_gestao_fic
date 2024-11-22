@@ -72,19 +72,7 @@ class Scraper:
                 # Transform excel in a pandas dataframe
                 df = pd.read_excel(excel_data)
 
-                # Remove empty lines
-                df.dropna(inplace=True)
-
-                # Sort row by start couse day field
-                df = df.sort_values(by='Período De')
-
-                # Remove duplicates rows and keep the last
-                df = df.drop_duplicates(subset='Turma', keep='last')
-
-                # Transform dataframe in python dict
-                data = df.to_dict(orient='records')
-
-                return data
+                return df
             else:
                 raise Exception(
                     f"Falha na resposta do SGSET (STATUS {status_code})")
