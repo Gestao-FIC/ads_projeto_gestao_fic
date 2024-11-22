@@ -23,6 +23,6 @@ urlpatterns = [
     path('course-class/', include('sgset.urls.course_class_urls')),
     path('course/', include('sgset.urls.course_urls')),
     path('quorum/', include('sgset.urls.update_quorum_urls')),
-    path('goals/', include('sgset.urls.GoalUrls'))
+    path('goals/', include('sgset.urls.GoalUrls')),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 ]
