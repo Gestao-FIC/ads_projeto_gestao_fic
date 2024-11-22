@@ -2,8 +2,8 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.exceptions import NotFound
-from sgset.serializers.GoalSerializer import GoalSerializer
-from sgset.services.GoalService import GoalService
+from sgset.serializers.goals_serializer import GoalSerializer
+from sgset.services.goals_service import GoalService
 from uuid import UUID
 
 class GoalListView(APIView):
