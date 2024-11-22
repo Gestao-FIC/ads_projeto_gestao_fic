@@ -5,7 +5,7 @@ import { Calendar } from "./ui/calendar";
 import * as React from "react";
 import { events } from "@/mocks/mock";
 
-export default function DashCalendar() {
+export default function EducatorCalendar() {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
 
   const modifiers = {

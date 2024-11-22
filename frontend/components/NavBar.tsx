@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { PiBook, PiChartPieSlice, PiUser } from "react-icons/pi";
@@ -21,13 +21,19 @@ const username = "Ana Julia";
 const email = "ana.julia@gmail.com";
 
 const NavBar = () => {
-  const [activePath, setActivePath] = useState("/");
+  const [activePath, setActivePath] = useState("");
 
   const handleLinkClick = (path: string) => {
     setActivePath(path);
   };
 
   const pathname = usePathname();
+
+  useEffect(() => {
+    setTimeout(() => {
+      setActivePath(pathname);
+    }, 0);
+  }, [pathname]);
 
   return (
     <>
@@ -54,7 +60,7 @@ const NavBar = () => {
             <Link href={"/"} onClick={() => handleLinkClick("/")}>
               <div
                 className={`flex flex-row items-center w-full gap-4 px-2 py-1 ${
-                  activePath === "/" ? "bg-secondary" : ""
+                  activePath === "/" ? "bg-background" : ""
                 }`}
               >
                 <PiChartPieSlice
@@ -76,7 +82,7 @@ const NavBar = () => {
             >
               <div
                 className={`flex flex-row items-center w-full gap-4 px-2 py-1 ${
-                  activePath === "/docentes" ? "bg-secondary" : ""
+                  activePath === "/docentes" ? "bg-background" : ""
                 }`}
               >
                 <PiUser
@@ -97,7 +103,7 @@ const NavBar = () => {
             <Link href={"/cursos"} onClick={() => handleLinkClick("/cursos")}>
               <div
                 className={`flex flex-row items-center w-full gap-4 px-2 py-1 ${
-                  activePath === "/cursos" ? "bg-secondary" : ""
+                  activePath === "/cursos" ? "bg-background" : ""
                 }`}
               >
                 <PiBook

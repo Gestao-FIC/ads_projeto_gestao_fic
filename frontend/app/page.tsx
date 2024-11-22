@@ -1,11 +1,11 @@
 import { ChartComponent } from "@/components/DashChart";
 import DashCalendar from "@/components/DashCalendar";
 import GaugeComponent from "@/components/DashGauge";
-import { gaugeData } from "@/lib/mock";
+import { gaugeData } from "@/mocks/mock";
 
 export default function Dashboard() {
   return (
-    <div className="flex flex-row h-full w-full bg-secondary">
+    <div className="flex flex-row h-full w-full bg-background">
       <div className="flex-1 flex flex-col p-4">
         <div className="flex-1 flex flex-row justify-around">
           {/* Mapeia sobre os dados mockados e renderiza os gauges */}
