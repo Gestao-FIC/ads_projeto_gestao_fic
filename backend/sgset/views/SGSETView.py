@@ -1,9 +1,12 @@
+from django.forms import ValidationError
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from sgset.scrapper.DriverManager import DriverManager
 from sgset.scrapper.Scraper import Scraper
 from sgset.services.SGSETNormalizer import SGSETNormalizer
+from sgset.serializers.SGS7Serializer import SGSETSerializer
+from sgset.models import SGSETModel
 
 
 class SGSETView(APIView):
@@ -25,10 +28,26 @@ class SGSETView(APIView):
 
             # Transform dataframe in python dict
             data = df_data.to_dict(orient='records')
+            serializer = SGSETSerializer(data=data, many=True)
+
+            # Save rows in database
+            SGSETModel.objects.all().delete()
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+
+            # Replace day of week string for foreing key
+            SGSETNormalizer.find_dayofweek_fk(df_data=df_data)
 
             return Response(data)
+        except ValidationError as e:
+            return Response(
+                {'error': "Dados não estão conformes às regras do banco de dados"},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
         except Exception as e:
+            print(e)
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
         finally:
             # Fecha o WebDriver
             driver_manager.stop_driver()
