@@ -33,12 +33,10 @@ export default function GaugeComponent({
 
   return (
     <div className="flex flex-col items-center justify-center w-52 h-52 bg-white p-4 rounded-lg shadow-md">
-      <div className="flex flex-col items-center mb-2">
-        <p className="text-[0.6rem]">Progresso</p>
-      </div>
       <CircularProgressbar
         value={percentage}
         text={`${percentage.toFixed(0)}%`}
+        className="font-medium"
         circleRatio={0.7}
         styles={buildStyles({
           textColor: "#000",
@@ -48,7 +46,7 @@ export default function GaugeComponent({
         })}
       />
       <div className="text-center mt-2">
-        <p className="text-xs">{`${value}/${total}`}</p>
+        <p className="text-md">{`${value}/${total}`}</p>
         <p className="text-lg font-semibold">{types}</p>
       </div>
     </div>
