@@ -1,38 +1,38 @@
-# Utilizando a imagem oficial do Node.js como base
+# Etapa base para instalação de dependências
 FROM node:18-alpine AS base
 
-# Definindo diretório de trabalho dentro do container
+# Definindo o diretório de trabalho no container
 WORKDIR /app
 
-# Copiando os arquivos de package.json e package-lock.json
-COPY package.json package-lock.json ./
+# Copiando arquivos necessários para instalar as dependências
+COPY package.json ./
 
-# Instalando as dependências do projeto
-RUN npm install
+# Instalando apenas as dependências de produção
+RUN npm install --production
 
-# Copiando o restante dos arquivos do projeto para o container
+# Copiando o restante dos arquivos do projeto
 COPY . .
 
-# Compilando o projeto Next.js
+# Construindo o projeto Next.js
 RUN npm run build
 
-# Utilizando uma segunda fase para criar uma imagem menor
-FROM node:18-alpine AS production
+# Configurando a etapa final para a imagem de produção
+FROM node:18-alpine AS final
 
-# Definindo diretório de trabalho
+# Definindo o diretório de trabalho no container
 WORKDIR /app
 
-# Copiando apenas o necessário da fase anterior (dependências e build)
+# Copiando apenas o necessário da etapa anterior
 COPY --from=base /app/node_modules ./node_modules
 COPY --from=base /app/package.json ./package.json
 COPY --from=base /app/.next ./.next
 COPY --from=base /app/public ./public
 
-# Definindo a variável de ambiente para o modo produção
+# Configurando o ambiente de produção
 ENV NODE_ENV=production
 
-# Expondo a porta que o Next.js utilizará
+# Expondo a porta padrão usada pelo Next.js
 EXPOSE 3000
 
-# Comando para rodar a aplicação no ambiente de produção
+# Comando padrão para iniciar o servidor em produção
 CMD ["npm", "start"]
