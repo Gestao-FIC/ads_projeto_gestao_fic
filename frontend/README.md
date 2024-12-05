@@ -101,41 +101,26 @@ src/
 
 ### **Tela de Login**
 
-- Autenticação com validação de campos.
-- Design moderno e responsivo.
+- Autenticação Segura: Sistema robusto de validação de campos e proteção contra acessos não autorizados.
+- Design Moderno e Responsivo: Interface adaptável a diferentes dispositivos e tamanhos de tela, garantindo uma experiência de uso consistente.
 
 ### **Dashboard**
 
-- Gráficos dinâmicos representando dados de desempenho e metas.
-- Calendário interativo para gestão de eventos e datas importantes.
-- Indicadores intuitivos para acompanhar o progresso dos cursos.
+- Visualização de Dados em Tempo Real: Gráficos interativos que apresentam informações de desempenho, metas e indicadores-chave.
+- Calendário Interativo: Ferramenta prática para organizar eventos, prazos e compromissos importantes.
+- Indicadores Intuitivos: Monitore o progresso dos cursos de forma clara e objetiva, com métricas visuais acessíveis.
 
 ### **Gestão de Docentes**
 
-- Listagem de professores com suas respectivas cargas horárias.
-- Edição e remoção de docentes em tempo real.
-- Filtros avançados para busca e organização.
+- Controle Completo de Professores: Listagem detalhada com informações como carga horária e áreas de atuação.
+- Edição e Remoção em Tempo Real: Alterações rápidas e sem interrupções.
+- Filtros Avançados: Sistema de busca otimizado para localizar e organizar docentes com base em critérios específicos.
 
 ### **Gestão de Cursos**
 
-- Cadastro e gerenciamento de cursos.
-- Configuração de datas de início e término.
-- Ferramentas para controlar a carga horária de cada curso.
+- Cadastro e Gerenciamento Simplificado: Interface intuitiva para criação, edição e exclusão de cursos.
+- Configuração de Datas: Defina com precisão as datas de início, término e intervalos.
+- Gestão de Carga Horária: Ferramentas inteligentes para acompanhar e ajustar a duração e o cronograma de cada curso.
 
 ---
-
-## **Contribuindo**
-
-Contribuições são bem-vindas!
-
-1. Faça um fork do projeto.
-2. Crie uma branch para sua feature ou correção (`git checkout -b feature/nova-feature`).
-3. Faça o commit das suas mudanças (`git commit -m 'Adicionei nova feature'`).
-4. Envie para o repositório remoto (`git push origin feature/nova-feature`).
-5. Abra um pull request.
-
----
-
-## **Licença**
-
-Este projeto está licenciado sob a [MIT License](./LICENSE).
+   
