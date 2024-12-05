@@ -4,5 +4,5 @@ from .course import CourseModel
 from .day_of_week import DayOfWeekModel
 from .event import EventModel
 from .goal import Goal
-from .instructor_class import InstructorClassModel
-from .instructor import InstructorModel
+from .instructor_class import InstructorClass
+from .instructor import Instructor

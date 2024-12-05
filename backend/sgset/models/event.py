@@ -1,6 +1,6 @@
 import uuid
 from django.db import models
-from .instructor import InstructorModel
+from .instructor import Instructor
 
 
 class EventModel(models.Model):
@@ -38,7 +38,7 @@ class EventModel(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     instructor = models.ForeignKey(
-        InstructorModel, on_delete=models.CASCADE, null=True, related_name='instructor')
+        Instructor, on_delete=models.CASCADE, null=True, related_name='instructor')
     title = models.CharField(max_length=100, verbose_name='Title')
     description = models.TextField(blank=True, verbose_name='Description')
     start_date = models.DateField(verbose_name='Start Date')

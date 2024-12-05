@@ -2,7 +2,7 @@ import uuid
 from django.db import models
 
 
-class InstructorModel(models.Model):
+class Instructor(models.Model):
     """
     Represents a teacher or instructor responsible for classes.
 
