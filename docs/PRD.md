@@ -4,10 +4,15 @@
 
 Este sistema visa otimizar a alocação de docentes e o gerenciamento de turmas dos cursos de formação inicial e continuada (FIC) do SENAI, integrando dados do sistema legado SGSET em um dashboard visual para facilitar o acompanhamento e aprovação de cursos. O principal objetivo é centralizar as informações relacionadas aos cursos e docentes, permitindo uma tomada de decisão eficiente sobre a abertura de turmas com base em critérios de quórum e a gestão do alocamento de docentes aos cursos. A solução também melhora o processo de substituição de docentes em casos de imprevistos, e simplifica o planejamento de infraestrutura e materiais.
 
-
 ## Por que implementar isto?
 
 O sistema surge da necessidade de evitar o gerenciamento manual e fragmentado das turmas e dos docentes, que atualmente envolve múltiplas planilhas e telas. A centralização dessas informações em um único painel visual reduz erros, economiza tempo e facilita o acompanhamento de metas financeiras, quórum de alunos e alocação de docentes. Além disso, o sistema permitirá uma visão clara do status das turmas, seja para cursos em andamento, prorrogados ou concluídos, além de gerar relatórios e ajustes manuais diretamente a partir dos dados.
+
+A escolha da solução foi justificada com base em análises detalhadas do cenário atual do cliente, que demonstra limitações do sistema SG7 em termos de eficiência e usabilidade. O modelo atual exige atualizações manuais constantes, busca em diversas telas e processamento de planilhas, o que aumenta as chances de erros e reduz a agilidade na tomada de decisão.
+
+Com base nisso, a implementação de um sistema centralizado foi identificada como essencial para resolver esses desafios de uso eficiente, como a dificuldade na alocação de docentes devido a atrasos e informações dispersas, e a necessidade de indicadores claros para gestão financeira e quórum mínimo de alunos.
+
+A nova solução consolida dados em um único painel visual, com gráficos, velocímetros e funcionalidades automatizadas, permitindo a alocação eficiente de instrutores e uma gestão simplificada de turmas. Essa abordagem reduz o tempo gasto em tarefas manuais e potencializa a tomada de decisões estratégicas, alinhando-se aos objetivos do cliente de modernizar a gestão educacional e atender às demandas de um ambiente dinâmico e atarefado.
 
 ---
 
@@ -19,7 +24,6 @@ Este sistema é direcionado principalmente para gestores do SENAI responsáveis 
 | --- | --- |
 | Coordenador dos cursos FIC | Necessita de uma visão centralizada para aprovar a abertura de turmas, alocar docentes e gerenciar o calendário de cursos.  |
 | Orientador de práticas profissionais |  Necessita visualizar o progresso alcançado em relação à metas anuais (cursos, matrículas e receita)  |
-
 
 ---
 
