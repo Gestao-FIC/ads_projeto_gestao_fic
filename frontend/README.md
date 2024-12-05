@@ -44,8 +44,8 @@ Além disso, a plataforma oferecerá recursos para a administração de cursos, 
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/seu-repositorio.git
-   cd seu-repositorio
+   git clone https://github.com/Gestao-FIC/ads_projeto_gestao_fic.git
+   cd frontend
    ```
 2. Instale as dependências:
    ```bash
@@ -53,21 +53,13 @@ Além disso, a plataforma oferecerá recursos para a administração de cursos, 
    # ou
    yarn install
    ```
-3. Configure as variáveis de ambiente:
-
-   - Crie um arquivo `.env.local` na raiz do projeto com as seguintes variáveis:
-     ```env
-     NEXT_PUBLIC_API_URL=http://localhost:4000
-     NEXT_PUBLIC_APP_NAME=Sistema FIC
-     ```
-
-4. Execute o servidor de desenvolvimento:
+3. Execute o servidor de desenvolvimento:
    ```bash
    npm run dev
    # ou
    yarn dev
    ```
-5. Acesse o projeto em [http://localhost:3000](http://localhost:3000).
+4. Acesse o projeto em [http://localhost:3000](http://localhost:3000).
 
 ---
 
