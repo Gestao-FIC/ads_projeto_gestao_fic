@@ -2,7 +2,7 @@ import uuid
 from django.db import models
 
 
-class CourseModel(models.Model):
+class Course(models.Model):
     """
     Represents a course offered, such as 'Mechanical Fitter' or 'Arduino'.
 

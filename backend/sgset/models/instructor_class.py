@@ -1,6 +1,6 @@
 from django.db import models
 from .instructor import Instructor
-from .course_class import CourseClassModel
+from .course_class import CourseClass
 
 
 class InstructorClass(models.Model):
@@ -16,7 +16,7 @@ class InstructorClass(models.Model):
         Instructor, on_delete=models.CASCADE, related_name='courses'
     )
     course_class = models.ForeignKey(
-        CourseClassModel, on_delete=models.CASCADE, related_name='instructors'
+        CourseClass, on_delete=models.CASCADE, related_name='instructors'
     )
 
     class Meta:
