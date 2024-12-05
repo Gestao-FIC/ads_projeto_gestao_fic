@@ -68,7 +68,7 @@ Além disso, a plataforma oferecerá recursos para a administração de cursos, 
 A organização do projeto segue as boas práticas do Next.js:
 
 ```plaintext
-src/
+.
 ├── app/
 │   ├── dashboard/
 │   │   └── page.tsx
@@ -81,7 +81,14 @@ src/
 │   ├── charts/  # Componentes de gráficos
 │   └── forms/  # Componentes de formulários
 ├── styles/  # Configuração do Tailwind CSS
-└── utils/  # Funções utilitárias
+├── utils/  # Funções utilitárias
+├── public/
+├── lib/
+├── mocks/
+├── .eslintrc.json
+├── package.json
+├── tailwind.config.ts
+├── tsconfig.json
 ```
 
 ---
