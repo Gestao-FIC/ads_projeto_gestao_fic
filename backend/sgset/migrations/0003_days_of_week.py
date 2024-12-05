@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('sgset', '0002_initial'),
+        ('sgset', '0001_initial'),
     ]
 
     operations = [

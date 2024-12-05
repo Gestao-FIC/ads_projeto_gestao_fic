@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('sgset', '0006_eventmodel_instructor'),
+        ('sgset', '0003_days_of_week'),
     ]
 
     operations = [
