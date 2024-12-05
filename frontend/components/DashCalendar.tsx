@@ -1,6 +1,6 @@
 "use client";
 
-import CalendarForm from "./CalendarForm";
+import DashCalendarForm from "./DashForm";
 import { Calendar } from "./ui/calendar";
 import * as React from "react";
 import { events } from "@/mocks/mock";
@@ -51,7 +51,7 @@ export default function DashCalendar() {
         </div>
       </div>
 
-      <CalendarForm formType="geral" />
+      <DashCalendarForm />
     </div>
   );
 }

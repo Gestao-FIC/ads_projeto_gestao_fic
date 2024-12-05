@@ -1,11 +1,11 @@
 "use client";
 
-import CalendarForm from "./CalendarForm";
 import { Calendar } from "./ui/calendar";
 import * as React from "react";
 import { events } from "@/mocks/mock";
+import TeacherCalendarForm from "./TeacherForm";
 
-export default function EducatorCalendar() {
+export default function TeacherCalendar() {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
 
   const modifiers = {
@@ -51,7 +51,7 @@ export default function EducatorCalendar() {
         </div>
       </div>
 
-      <CalendarForm formType="geral" />
+      <TeacherCalendarForm />
     </div>
   );
 }

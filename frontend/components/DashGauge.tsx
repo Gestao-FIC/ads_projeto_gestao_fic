@@ -8,7 +8,7 @@ interface GaugeProps {
   value: number;
   total: number;
   colors?: "red" | "blue" | "green";
-  types?: "Cursos" | "Matrículas" | "Financeiro";
+  types?: string;
 }
 
 export default function GaugeComponent({
@@ -35,23 +35,8 @@ export default function GaugeComponent({
     <div className="flex flex-col items-center justify-center w-52 h-52 bg-white p-4 rounded-lg shadow-md">
       <CircularProgressbar
         value={percentage}
-        text={
-          <tspan>
-            <tspan className="text-[0.6rem]" x="50%" dy="-20">
-              Progresso
-            </tspan>
-            <tspan
-              className="text-lg font-bold"
-              x="50%"
-              dy="20"
-            >{`${percentage.toFixed(0)}%`}</tspan>
-            <tspan
-              className="text-xs"
-              x="50%"
-              dy="20"
-            >{`${value}/${total}`}</tspan>
-          </tspan>
-        }
+        text={`${percentage.toFixed(0)}%`}
+        className="font-medium"
         circleRatio={0.7}
         styles={buildStyles({
           textColor: "#000",
@@ -60,7 +45,8 @@ export default function GaugeComponent({
           rotation: 0.65,
         })}
       />
-      <div className="text-center">
+      <div className="text-center mt-2">
+        <p className="text-md">{`${value}/${total}`}</p>
         <p className="text-lg font-semibold">{types}</p>
       </div>
     </div>
