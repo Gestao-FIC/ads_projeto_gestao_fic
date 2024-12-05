@@ -14,8 +14,8 @@ Este repositório abriga o frontend do Sistema de Gerenciamento de Cursos de For
    - [Dashboard](#dashboard)
    - [Gestão de Docentes](#gestão-de-docentes)
    - [Gestão de Cursos](#gestão-de-cursos)
-7. [Contribuindo](#contribuindo)
-8. [Licença](#licença)
+7. [Design Patterns](#Design-Patterns)
+
 
 ---
 
@@ -131,3 +131,10 @@ A organização do projeto segue as boas práticas do Next.js:
 
 ---
    
+### **Design Patterns**
+
+#### Strategy : 
+O padrão Strategy permite que você defina uma família de algoritmos ou comportamentos intercambiáveis e os utilize de forma dinâmica. Ele é útil quando você precisa oferecer diferentes formas de executar uma tarefa sem usar condicionais complexos. Você pode alterar o comportamento de um objeto em tempo de execução apenas mudando a estratégia que ele utiliza.
+
+#### Adapter :
+O padrão Adapter serve como um tradutor entre duas interfaces incompatíveis, permitindo que elas funcionem juntas sem alterações no código original. Ele é usado principalmente para integrar sistemas ou bibliotecas externas com o seu código.
