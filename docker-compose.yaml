@@ -1,7 +1,7 @@
 services:
   backend:
     build:
-      context: ./backend  # Caminho para o diretório do backend
+      context: ./backend
     container_name: django_backend
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
@@ -12,7 +12,7 @@ services:
       DJANGO_DEBUG: 'True'
       DJANGO_SECRET_KEY: 'mysecretkey'
       DJANGO_ALLOWED_HOSTS: 'localhost,127.0.0.1'
-      DATABASE_URL: 'postgres://myuser:mypassword@db:5432/mydatabase'
+      DATABASE_URL: 'postgres://postgres:password@db:5432/database'
     depends_on:
       - db
 
