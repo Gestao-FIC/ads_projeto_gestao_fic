@@ -3,8 +3,9 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.exceptions import NotFound
 from sgset.serializers.DaysOfWeekSerializer import DaysOfWeekSerializer
-from sgset.models import DayOfWeek
+from sgset.models import DayOfWeekModel
 from uuid import UUID
+
 
 class DayOfWeekListView(APIView):
     """
@@ -13,7 +14,7 @@ class DayOfWeekListView(APIView):
 
     def get(self, request, *args, **kwargs):
         """Handles GET requests to list all days of the week."""
-        days_of_week = DayOfWeek.objects.all()
+        days_of_week = DayOfWeekModel.objects.all()
         serializer = DaysOfWeekSerializer(days_of_week, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -38,29 +39,29 @@ class DayOfWeekDetailView(APIView):
     def get(self, request, day_of_week_id: UUID, *args, **kwargs):
         """Handles GET requests to retrieve a specific day of the week."""
         try:
-            day_of_week = DayOfWeek.objects.get(id=day_of_week_id)
+            day_of_week = DayOfWeekModel.objects.get(id=day_of_week_id)
             serializer = DaysOfWeekSerializer(day_of_week)
             return Response(serializer.data, status=status.HTTP_200_OK)
-        except DayOfWeek.DoesNotExist:
+        except DayOfWeekModel.DoesNotExist:
             raise NotFound("Day of the week not found")
 
     def put(self, request, day_of_week_id: UUID, *args, **kwargs):
         """Handles PUT requests to update a specific day of the week."""
         try:
-            day_of_week = DayOfWeek.objects.get(id=day_of_week_id)
+            day_of_week = DayOfWeekModel.objects.get(id=day_of_week_id)
             serializer = DaysOfWeekSerializer(day_of_week, data=request.data)
             if serializer.is_valid():
                 updated_day_of_week = serializer.save()
                 return Response(DaysOfWeekSerializer(updated_day_of_week).data, status=status.HTTP_200_OK)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        except DayOfWeek.DoesNotExist:
+        except DayOfWeekModel.DoesNotExist:
             raise NotFound("Day of the week not found")
 
     def delete(self, request, day_of_week_id: UUID, *args, **kwargs):
         """Handles DELETE requests to delete a specific day of the week."""
         try:
-            day_of_week = DayOfWeek.objects.get(id=day_of_week_id)
+            day_of_week = DayOfWeekModel.objects.get(id=day_of_week_id)
             day_of_week.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
-        except DayOfWeek.DoesNotExist:
+        except DayOfWeekModel.DoesNotExist:
             raise NotFound("Day of the week not found")

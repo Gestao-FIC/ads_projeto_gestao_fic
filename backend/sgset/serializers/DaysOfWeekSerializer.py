@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from sgset.models import DayOfWeek
+from sgset.models import DayOfWeekModel
 
 
 class DaysOfWeekSerializer(serializers.ModelSerializer):
     class Meta:
-        model = DayOfWeek
+        model = DayOfWeekModel
         fields = '__all__'
