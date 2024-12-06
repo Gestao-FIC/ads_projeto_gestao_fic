@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'drf_yasg',
-    'sgset'
+    'sgset',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -56,6 +57,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://nextjs_frontend:3000",
 ]
 
 ROOT_URLCONF = 'core.urls'
