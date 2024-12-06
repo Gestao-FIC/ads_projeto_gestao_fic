@@ -16,9 +16,11 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='CourseModel',
             fields=[
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
-                ('name', models.CharField(max_length=100, verbose_name='Course Name')),
-                ('price_per_student', models.DecimalField(decimal_places=2, max_digits=10, null=True, verbose_name='Price per Student')),
+                ('id', models.UUIDField(default=uuid.uuid4,
+                 editable=False, primary_key=True, serialize=False)),
+                ('name', models.CharField(max_length=500, verbose_name='Course Name')),
+                ('price_per_student', models.DecimalField(decimal_places=2,
+                 max_digits=10, null=True, verbose_name='Price per Student')),
             ],
             options={
                 'verbose_name': 'Course',
@@ -29,17 +31,21 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='DayOfWeekModel',
             fields=[
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('id', models.UUIDField(default=uuid.uuid4,
+                 editable=False, primary_key=True, serialize=False)),
                 ('name', models.CharField(max_length=50, unique=True)),
             ],
         ),
         migrations.CreateModel(
             name='GoalModel',
             fields=[
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('id', models.UUIDField(default=uuid.uuid4,
+                 editable=False, primary_key=True, serialize=False)),
                 ('year', models.IntegerField(verbose_name='Year')),
-                ('goal_description', models.CharField(choices=[('cursos', 'Cursos'), ('matriculas', 'Matriculas'), ('receita', 'Receita')], max_length=12, verbose_name='Goal Type')),
-                ('value', models.DecimalField(decimal_places=2, max_digits=10, verbose_name='Value')),
+                ('goal_description', models.CharField(choices=[('cursos', 'Cursos'), (
+                    'matriculas', 'Matriculas'), ('receita', 'Receita')], max_length=12, verbose_name='Goal Type')),
+                ('value', models.DecimalField(decimal_places=2,
+                 max_digits=10, verbose_name='Value')),
             ],
             options={
                 'verbose_name': 'Goal',
@@ -50,9 +56,12 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='InstructorModel',
             fields=[
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
-                ('name', models.CharField(max_length=100, verbose_name='Instructor Name')),
-                ('source', models.CharField(choices=[('sgset', 'SGSET'), ('user', 'User')], max_length=10, verbose_name='Source')),
+                ('id', models.UUIDField(default=uuid.uuid4,
+                 editable=False, primary_key=True, serialize=False)),
+                ('name', models.CharField(
+                    max_length=100, verbose_name='Instructor Name')),
+                ('source', models.CharField(choices=[
+                 ('sgset', 'SGSET'), ('user', 'User')], max_length=10, verbose_name='Source')),
             ],
             options={
                 'verbose_name': 'Instructor',
@@ -63,21 +72,34 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='CourseClassModel',
             fields=[
-                ('code', models.CharField(max_length=20, primary_key=True, serialize=False, verbose_name='Class Code')),
-                ('shift', models.CharField(max_length=20, null=True, verbose_name='Shift')),
-                ('duration', models.IntegerField(null=True, verbose_name='Duration')),
-                ('modality', models.CharField(max_length=50, null=True, verbose_name='Modality')),
-                ('attendance', models.CharField(max_length=50, null=True, verbose_name='Attendance')),
-                ('period_from', models.DateField(null=True, verbose_name='Start Date')),
+                ('code', models.CharField(max_length=20, primary_key=True,
+                 serialize=False, verbose_name='Class Code')),
+                ('shift', models.CharField(
+                    max_length=20, null=True, verbose_name='Shift')),
+                ('duration', models.IntegerField(
+                    null=True, verbose_name='Duration')),
+                ('modality', models.CharField(
+                    max_length=50, null=True, verbose_name='Modality')),
+                ('attendance', models.CharField(
+                    max_length=50, null=True, verbose_name='Attendance')),
+                ('period_from', models.DateField(
+                    null=True, verbose_name='Start Date')),
                 ('period_to', models.DateField(null=True, verbose_name='End Date')),
-                ('start_time', models.TimeField(null=True, verbose_name='Start Time')),
+                ('start_time', models.TimeField(
+                    null=True, verbose_name='Start Time')),
                 ('end_time', models.TimeField(null=True, verbose_name='End Time')),
-                ('estimated_enrollments', models.IntegerField(null=True, verbose_name='Estimated Enrollments')),
-                ('actual_enrollments', models.IntegerField(null=True, verbose_name='Actual Enrollments')),
-                ('quorum', models.IntegerField(blank=True, null=True, verbose_name='Minimum Quorum')),
-                ('status', models.CharField(choices=[('programado', 'Programado'), ('em_andamento', 'Em andamento'), ('concluido', 'Concluído'), ('cancelado', 'Cancelado')], max_length=12, verbose_name='Progress Status')),
-                ('income', models.DecimalField(decimal_places=2, max_digits=10, null=True, verbose_name='Income from Enrollments')),
-                ('course', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='classes', to='sgset.coursemodel', verbose_name='Course')),
+                ('estimated_enrollments', models.IntegerField(
+                    null=True, verbose_name='Estimated Enrollments')),
+                ('actual_enrollments', models.IntegerField(
+                    null=True, verbose_name='Actual Enrollments')),
+                ('quorum', models.IntegerField(blank=True,
+                 null=True, verbose_name='Minimum Quorum')),
+                ('status', models.CharField(choices=[('programado', 'Programado'), ('em_andamento', 'Em andamento'), (
+                    'concluido', 'Concluído'), ('cancelado', 'Cancelado')], max_length=12, verbose_name='Progress Status')),
+                ('income', models.DecimalField(decimal_places=2, max_digits=10,
+                 null=True, verbose_name='Income from Enrollments')),
+                ('course', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                 related_name='classes', to='sgset.coursemodel', verbose_name='Course')),
             ],
             options={
                 'verbose_name': 'Course Class',
@@ -88,21 +110,28 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ClassScheduleModel',
             fields=[
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
-                ('class_instance', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='day_schedules', to='sgset.courseclassmodel')),
-                ('day_of_week', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='class_schedules', to='sgset.dayofweekmodel')),
+                ('id', models.UUIDField(default=uuid.uuid4,
+                 editable=False, primary_key=True, serialize=False)),
+                ('class_instance', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                 related_name='day_schedules', to='sgset.courseclassmodel')),
+                ('day_of_week', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                 related_name='class_schedules', to='sgset.dayofweekmodel')),
             ],
         ),
         migrations.CreateModel(
             name='EventModel',
             fields=[
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('id', models.UUIDField(default=uuid.uuid4,
+                 editable=False, primary_key=True, serialize=False)),
                 ('title', models.CharField(max_length=100, verbose_name='Title')),
-                ('description', models.TextField(blank=True, verbose_name='Description')),
+                ('description', models.TextField(
+                    blank=True, verbose_name='Description')),
                 ('start_date', models.DateField(verbose_name='Start Date')),
                 ('end_date', models.DateField(verbose_name='End Date')),
-                ('tag', models.CharField(choices=[('feriado', 'Feriado'), ('emenda', 'Emenda'), ('evento', 'Evento'), ('curso', 'Curso'), ('outros', 'Outros')], max_length=10, verbose_name='Tag')),
-                ('instructor', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='instructor', to='sgset.instructormodel')),
+                ('tag', models.CharField(choices=[('feriado', 'Feriado'), ('emenda', 'Emenda'), (
+                    'evento', 'Evento'), ('curso', 'Curso'), ('outros', 'Outros')], max_length=10, verbose_name='Tag')),
+                ('instructor', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE,
+                 related_name='instructor', to='sgset.instructormodel')),
             ],
             options={
                 'verbose_name': 'Date Reservation',
@@ -113,9 +142,12 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='InstructorClassModel',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('course_class', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='instructors', to='sgset.courseclassmodel')),
-                ('instructor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='courses', to='sgset.instructormodel')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
+                ('course_class', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                 related_name='instructors', to='sgset.courseclassmodel')),
+                ('instructor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                 related_name='courses', to='sgset.instructormodel')),
             ],
             options={
                 'verbose_name': 'Instructor Class',
