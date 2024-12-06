@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('sgset', '0007_rename_dayofweekmodel_dayofweek_and_more'),
+        ('sgset', '0003_days_of_week'),
     ]
 
     operations = [
