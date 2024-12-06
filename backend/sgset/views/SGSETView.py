@@ -32,7 +32,7 @@ class SGSETView(APIView):
 
             # Get class id and relate with dayofweek
             df_data['class_id'] = [
-                str(obj.code).replace('-', '')
+                str(obj.code)
                 for obj in df_classes
             ]
 
@@ -40,7 +40,9 @@ class SGSETView(APIView):
             df_class_schedule = SGSETNormalizer.find_dayofweek_fk(
                 df_data=df_data
             )
-            # SGSETNormalizer.persist_class_schedule(df_data=df_class_schedule)
+            SGSETNormalizer.persist_class_schedule(df_data=df_class_schedule)
+
+            # TODO: Extract professors and persist in database with source="SGSET"
 
             return Response(data)
         except ValidationError as e:
