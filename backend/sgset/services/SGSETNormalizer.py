@@ -3,7 +3,6 @@ from datetime import datetime
 from unidecode import unidecode
 import pandas as pd
 
-
 from sgset.models.course import CourseModel
 from sgset.models.day_of_week import DayOfWeekModel
 from sgset.serializers.course_serializer import CourseSerializer
