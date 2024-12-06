@@ -9,7 +9,7 @@ const Login = () => {
     <div className="flex h-screen">
       <div className="w-1/2 bg-slate-200 flex items-center justify-center overflow-hidden ">
         <Image
-          src={"/images/Login.jpeg"}
+          src={"/images/Lucas.jpg"}
           height={774}
           width={816}
           alt="Ilustração de fábrica"
