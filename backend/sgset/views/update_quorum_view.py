@@ -2,7 +2,7 @@ from drf_yasg.utils import swagger_auto_schema
 from rest_framework import generics, status
 from rest_framework.exceptions import NotFound
 from rest_framework.response import Response
-from ..models.course_class import CourseClassModel
+from ..models.course_class import CourseClass
 from ..serializers.update_quorum_serializer import UpdateQuorumSerializer
 from ..swagger.update_quorum_response_schema import UpdateQuorumResponseSchema
 
@@ -19,7 +19,7 @@ class UpdateCourseClassQuorum(generics.UpdateAPIView):
     - PATCH: Atualiza apenas o campo de quórum de uma turma existente.
     """
 
-    queryset = CourseClassModel.objects.all()
+    queryset = CourseClass.objects.all()
     serializer_class = UpdateQuorumSerializer
 
     @swagger_auto_schema(
@@ -69,6 +69,6 @@ class UpdateCourseClassQuorum(generics.UpdateAPIView):
         - NotFound: Se nenhuma turma com o código fornecido for encontrada.
         """
         try:
-            return CourseClassModel.objects.get(code=self.kwargs['code'])
-        except CourseClassModel.DoesNotExist:
+            return CourseClass.objects.get(code=self.kwargs['code'])
+        except CourseClass.DoesNotExist:
             raise NotFound(f"Turma com o código '{self.kwargs['code']}' não encontrada.")

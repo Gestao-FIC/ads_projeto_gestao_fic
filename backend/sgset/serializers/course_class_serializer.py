@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from ..models.course_class import CourseClassModel
+from ..models.course_class import CourseClass
 
 
 class CourseClassModelSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CourseClassModel
+        model = CourseClass
         fields = '__all__'

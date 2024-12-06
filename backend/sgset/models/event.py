@@ -3,7 +3,7 @@ from django.db import models
 from .instructor import Instructor
 
 
-class EventModel(models.Model):
+class Event(models.Model):
     """
     Model to represent date reservations.
 
