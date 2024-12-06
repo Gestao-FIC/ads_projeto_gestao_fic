@@ -4,7 +4,7 @@ from django.db import migrations
 from django.db import models
 from django.db.migrations.state import StateApps
 from django.db.backends.base.schema import BaseDatabaseSchemaEditor
-from sgset.models.day_of_week import DayOfWeek
+from sgset.models.day_of_week import DayOfWeekModel
 
 
 def populate_days_of_week(apps: StateApps, schema_editor: BaseDatabaseSchemaEditor) -> None:
@@ -27,8 +27,8 @@ def populate_days_of_week(apps: StateApps, schema_editor: BaseDatabaseSchemaEdit
     ]
 
     for day in days:
-        if not DayOfWeek.objects.filter(name=day).exists():
-            DayOfWeek.objects.create(id=uuid.uuid4(), name=day)
+        if not DayOfWeekModel.objects.filter(name=day).exists():
+            DayOfWeekModel.objects.create(id=uuid.uuid4(), name=day)
 
 
 class Migration(migrations.Migration):
