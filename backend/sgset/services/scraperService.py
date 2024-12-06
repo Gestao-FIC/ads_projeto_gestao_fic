@@ -20,7 +20,7 @@ class ScraperService:
             cookies = response.cookies
 
         except:
-            return Exception(f"Falha ao acessar o relatório do SGSET")
+            raise Exception(f"Falha ao acessar o relatório do SGSET")
 
         try:
 
