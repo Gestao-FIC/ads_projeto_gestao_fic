@@ -1,5 +1,7 @@
-import pandas as pd
+from datetime import datetime
 from io import BytesIO
+import pandas as pd
+import pytz
 import requests
 
 
@@ -10,8 +12,10 @@ class ScraperService:
         """Método principal para visitar a página e baixar o Excel."""
 
         try:
-
-            url = "https://sgset.sp.senai.br/Consultas/Resultado.aspx?Processo=%27Resultado%20-%20Oferta%20-%20Anal%C3%ADtico%27&Controle=3&Visao=183&Titulo=gestao_curso_fic&Xml=%27%3CBusca%3E%3CDados%20Colunas=%2212,15,19,16,13,54,53,22,21,75,77,109,5,97,29%22%20Tipo=%220%22%20Esco=%22402%22%20Nivel=%228%22%20PerDe=%2201/01/2024%22%20PerAte=%2231/12/2024%22%3E%3C/Dados%3E%3C/Busca%3E%27"
+            date = datetime.now(tz=pytz.timezone("America/Sao_Paulo")).date()
+            url = f"""
+            https://sgset.sp.senai.br/Consultas/Resultado.aspx?Processo=%27Resultado%20-%20Oferta%20-%20Anal%C3%ADtico%27&Controle=3&Visao=183&Titulo=gestao_curso_fic&Xml=%27%3CBusca%3E%3CDados%20Colunas=%2212,15,19,16,13,54,53,22,21,75,77,109,5,97,29%22%20Tipo=%220%22%20Esco=%22402%22%20Nivel=%228%22%20PerDe=%2201/01/{date}%22%20PerAte=%2231/12/{date}%22%3E%3C/Dados%3E%3C/Busca%3E%27
+            """
 
             # Acess SGSET web record link
             response = requests.get(url)
