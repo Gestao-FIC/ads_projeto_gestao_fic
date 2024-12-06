@@ -2,7 +2,7 @@ from django.forms import ValidationError
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from sgset.services.sgsetNormalizer import SGSETNormalizer
+from sgset.services.SGSETNormalizer import SGSETNormalizer
 from sgset.services.scraperService import ScraperService
 from sgset.serializers.SGS7Serializer import SGSETSerializer
 from sgset.models import SGSETModel
