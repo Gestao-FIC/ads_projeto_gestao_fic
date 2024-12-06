@@ -1,7 +1,7 @@
 import uuid
 from django.db import models
 from .course_class import CourseClassModel
-from .day_of_week import DayOfWeek
+from .day_of_week import DayOfWeekModel
 
 
 class ClassScheduleModel(models.Model):
@@ -16,7 +16,7 @@ class ClassScheduleModel(models.Model):
     class_instance = models.ForeignKey(
         CourseClassModel, on_delete=models.CASCADE, related_name='day_schedules')
     day_of_week = models.ForeignKey(
-        DayOfWeek, on_delete=models.CASCADE, related_name='class_schedules')
+        DayOfWeekModel, on_delete=models.CASCADE, related_name='class_schedules')
 
     def __str__(self) -> str:
         """Returns a string representation of the class schedule.
