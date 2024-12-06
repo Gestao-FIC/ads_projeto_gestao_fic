@@ -3,33 +3,37 @@
 import React, { useState, useRef, useEffect } from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { updateGoal } from "@/utils/fetch/goal"; // Importa a função de atualização
 
 interface GaugeProps {
-  value: number;
-  total: number;
-  colors?: "red" | "blue" | "green";
+  id: string; // ID da meta, necessário para o PUT
+  year: number; //ano
+  value: number; // Valor atual (progresso)
+  total: number; // Meta inicial
   types?: string;
 }
 
 export default function GaugeComponent({
+  id,
+  year,
   value,
   total: initialTotal,
-  colors = "blue",
-  types = "Cursos",
+  types,
 }: GaugeProps) {
   const [total, setTotal] = useState(initialTotal);
   const [isEditing, setIsEditing] = useState(false);
+  const [error, setError] = useState<string | null>(null); // Para exibir erros, se houver
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const percentage = (value / total) * 100;
 
   const getColor = () => {
-    switch (colors) {
-      case "red":
+    switch (types) {
+      case "receita":
         return "#f87171"; // vermelho (Tailwind cor: 'red-400')
-      case "green":
+      case "matriculas":
         return "#34d399"; // verde (Tailwind cor: 'green-400')
-      case "blue":
+      case "cursos":
       default:
         return "#60a5fa"; // azul (Tailwind cor: 'blue-400')
     }
@@ -43,18 +47,19 @@ export default function GaugeComponent({
 
   const handleSaveTotal = async () => {
     setIsEditing(false);
+    setError(null); // Limpa o erro antes de tentar salvar
+
     try {
-      // Simula uma requisição PUT (substitua a URL pelo endpoint correto)
-      await fetch("https://sua-api.com/endpoint", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ total }),
+      // Chama a função de atualização no backend
+      await updateGoal(id, {
+        year: year,
+        goal_description: types,
+        value: total,
       });
       console.log("Meta atualizada com sucesso!");
     } catch (error) {
       console.error("Erro ao atualizar a meta:", error);
+      setError("Erro ao salvar a meta. Tente novamente.");
     }
   };
 
@@ -105,11 +110,18 @@ export default function GaugeComponent({
               onKeyDown={handleKeyDown}
               onBlur={handleBlur}
             />
+          ) : types != "receita" ? (
+            <>
+              {Math.round(value)}/{Math.round(total)}
+            </>
           ) : (
-            `${value}/${total}`
+            <>
+              {value} / {total}
+            </>
           )}
         </p>
-        <p className="text-lg font-semibold">{types}</p>
+        <p className="font-semibold first-letter:uppercase">{types}</p>
+        {error && <p className="text-sm text-red-500 mt-1">{error}</p>}
       </div>
     </div>
   );
