@@ -1,7 +1,7 @@
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import generics
 from ..serializers.course_serializer import CourseSerializer
-from ..models.course import CourseModel
+from ..models.course import Course
 from ..swagger.course_response_schema import CourseResponseSchema
 
 
@@ -14,7 +14,7 @@ class CourseModelList(generics.ListCreateAPIView):
     - Criar um novo curso fornecendo os dados necessários.
     """
 
-    queryset = CourseModel.objects.all()
+    queryset = Course.objects.all()
     serializer_class = CourseSerializer
 
     @swagger_auto_schema(
@@ -64,7 +64,7 @@ class CourseModelDetail(generics.RetrieveUpdateDestroyAPIView):
     - Deletar um curso específico.
     """
 
-    queryset = CourseModel.objects.all()
+    queryset = Course.objects.all()
     serializer_class = CourseSerializer
 
     @swagger_auto_schema(

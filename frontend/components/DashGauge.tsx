@@ -1,35 +1,84 @@
 "use client";
 
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { updateGoal } from "@/utils/fetch/goal"; // Importa a função de atualização
 
 interface GaugeProps {
-  value: number;
-  total: number;
-  colors?: "red" | "blue" | "green";
+  id: string; // ID da meta, necessário para o PUT
+  year: number; //ano
+  value: number; // Valor atual (progresso)
+  total: number; // Meta inicial
   types?: string;
 }
 
 export default function GaugeComponent({
+  id,
+  year,
   value,
-  total,
-  colors = "blue",
-  types = "Cursos",
+  total: initialTotal,
+  types,
 }: GaugeProps) {
+  const [total, setTotal] = useState(initialTotal);
+  const [isEditing, setIsEditing] = useState(false);
+  const [error, setError] = useState<string | null>(null); // Para exibir erros, se houver
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
   const percentage = (value / total) * 100;
 
   const getColor = () => {
-    switch (colors) {
-      case "red":
+    switch (types) {
+      case "receita":
         return "#f87171"; // vermelho (Tailwind cor: 'red-400')
-      case "green":
+      case "matriculas":
         return "#34d399"; // verde (Tailwind cor: 'green-400')
-      case "blue":
+      case "cursos":
       default:
         return "#60a5fa"; // azul (Tailwind cor: 'blue-400')
     }
   };
+
+  const handleEditTotal = () => setIsEditing(true);
+
+  const handleTotalChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTotal(Number(event.target.value));
+  };
+
+  const handleSaveTotal = async () => {
+    setIsEditing(false);
+    setError(null); // Limpa o erro antes de tentar salvar
+
+    try {
+      // Chama a função de atualização no backend
+      await updateGoal(id, {
+        year: year,
+        goal_description: types,
+        value: total,
+      });
+      console.log("Meta atualizada com sucesso!");
+    } catch (error) {
+      console.error("Erro ao atualizar a meta:", error);
+      setError("Erro ao salvar a meta. Tente novamente.");
+    }
+  };
+
+  const handleBlur = () => {
+    if (isEditing) handleSaveTotal();
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleSaveTotal();
+    }
+  };
+
+  // Foco automático ao entrar no modo de edição
+  useEffect(() => {
+    if (isEditing && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isEditing]);
 
   return (
     <div className="flex flex-col items-center justify-center w-52 h-52 bg-white p-4 rounded-lg shadow-md">
@@ -46,8 +95,33 @@ export default function GaugeComponent({
         })}
       />
       <div className="text-center mt-2">
-        <p className="text-md">{`${value}/${total}`}</p>
-        <p className="text-lg font-semibold">{types}</p>
+        <p
+          className="text-md cursor-pointer"
+          onClick={handleEditTotal}
+          title="Clique para editar"
+        >
+          {isEditing ? (
+            <input
+              ref={inputRef}
+              type="number"
+              value={total}
+              className="border-b-2 border-blue-400 focus:outline-none text-center"
+              onChange={handleTotalChange}
+              onKeyDown={handleKeyDown}
+              onBlur={handleBlur}
+            />
+          ) : types != "receita" ? (
+            <>
+              {Math.round(value)}/{Math.round(total)}
+            </>
+          ) : (
+            <>
+              {value} / {total}
+            </>
+          )}
+        </p>
+        <p className="font-semibold first-letter:uppercase">{types}</p>
+        {error && <p className="text-sm text-red-500 mt-1">{error}</p>}
       </div>
     </div>
   );

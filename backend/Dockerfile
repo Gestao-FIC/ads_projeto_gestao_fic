@@ -20,5 +20,5 @@ ENV PYTHONUNBUFFERED=1
 # Expor a porta que o Django vai rodar (8000 por padrão)
 EXPOSE 8000
 
-# Rodar as migrações e iniciar o servidor
-CMD ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
+# Rodar as migrações específicas do app 'sgset' e iniciar o servidor
+CMD ["sh", "-c", "python manage.py makemigrations sgset && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
