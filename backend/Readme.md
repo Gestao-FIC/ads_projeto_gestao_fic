@@ -127,6 +127,50 @@ Este serviço gerencia as operações relacionadas às metas anuais, como criar,
   - `update_goal(goal_id, data)`: Atualiza as informações de uma meta existente.
   - `delete_goal(goal_id)`: Exclui uma meta pelo ID.
   - `list_goals()`: Lista todas as metas.
+ 
+  - ## Serviços (Services)
+
+### SGSETNormalizer
+
+A classe **SGSETNormalizer** é responsável por normalizar e processar os dados provenientes da integração com o sistema SGSET, focando principalmente na preparação e limpeza dos dados. A seguir estão as descrições dos métodos que compõem essa classe.
+
+#### A) Métodos
+
+  1. **rename_columns(df_data)**
+     
+     - **Descrição**: Renomeia as colunas de um DataFrame para remover espaços e tornar os nomes das colunas mais uniformes. Os nomes das colunas são convertidos para minúsculas e os caracteres especiais são removidos utilizando a biblioteca `unidecode`.
+       
+     - **Parâmetros**:
+       
+         - `df_data`: O DataFrame a ser normalizado.
+         
+     - **Retorno**: O DataFrame com as colunas renomeadas.
+  
+  - Como Usar
+    
+  Exemplo de Uso do SGSETNormalizer
+  
+  Se você tiver um DataFrame df com dados brutos de turmas e dias da semana, pode utilizá-lo da seguinte forma:
+  
+    - from sgset_normalizer import SGSETNormalizer
+
+#### B) Renomear colunas
+
+  df_normalized = SGSETNormalizer.rename_columns(df)
+
+#### C) Remover duplicatas
+
+  df_no_duplicates = SGSETNormalizer.remove_duplicates(df_normalized)
+
+#### D) Mapear os dias da semana
+
+  df_with_dayofweek = SGSETNormalizer.find_dayofweek_fk(df_no_duplicates)
+
+Dependências
+
+    Pandas: Para manipulação de dados em DataFrames.
+    Unidecode: Para normalização de caracteres especiais nos nomes das colunas.
+    SGSET Models: Para a integração com o banco de dados do sistema SGSET, como o modelo DayOfWeek.
 
 ## 6 - Views
 
