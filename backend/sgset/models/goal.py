@@ -51,4 +51,4 @@ class Goal(models.Model):
         Returns a string representation of the goal, showing the year, 
         goal type, and value.
         """
-        return f"{self.year} - {self.goal_type}: {self.value}"
+        return f"{self.year} - {self.goal_description}: {self.value}"
