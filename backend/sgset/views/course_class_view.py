@@ -3,7 +3,7 @@ from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework import status
 from ..serializers.course_class_serializer import CourseClassModelSerializer
-from ..models.course_class import CourseClassModel
+from ..models.course_class import CourseClass
 from ..swagger.course_class_response_schema import CourseClassResponseSchema
 
 
@@ -16,7 +16,7 @@ class CourseClassModelList(generics.ListCreateAPIView):
     - Criar uma nova turma fornecendo os dados necessários.
     """
 
-    queryset = CourseClassModel.objects.all()
+    queryset = CourseClass.objects.all()
     serializer_class = CourseClassModelSerializer
 
     @swagger_auto_schema(
@@ -66,7 +66,7 @@ class CourseClassModelDetail(generics.RetrieveUpdateDestroyAPIView):
     - Deletar uma turma específica.
     """
 
-    queryset = CourseClassModel.objects.all()
+    queryset = CourseClass.objects.all()
     serializer_class = CourseClassModelSerializer
 
     @swagger_auto_schema(

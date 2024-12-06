@@ -6,7 +6,7 @@
 sequenceDiagram
     participant Usuário
     participant SistemaEspelho
-    participant Selenium
+    participant SGSETNormalizer
     participant SGSET
     participant ETL
     participant Banco
@@ -14,20 +14,20 @@ sequenceDiagram
     %% 1 - Login no Sistema
     Note over Usuário,SistemaEspelho: 1. Login no Sistema
     Usuário ->> SistemaEspelho: [1] Faz login no sistema espelho
-    SistemaEspelho ->> Selenium: [2] Autentica usuário no SGSET
-    Selenium ->> SGSET: [3] Envia login e senha
-    SGSET ->> Selenium: [4] Login bem-sucedido
-    Selenium ->> SistemaEspelho: [5] Confirmação de login no sistema espelho e SGSET
-    SistemaEspelho ->> Usuário: [6] Confirmação
+    SistemaEspelho ->> SGSET: [2] Autentica usuário no SGSET
+    SGSET ->> SistemaEspelho: [3] Confirmação de login bem-sucedido
+    SistemaEspelho ->> Usuário: [4] Confirmação de login
 
     %% 2 - Download Automático de Documentos
     Note over SistemaEspelho,SGSET: 2. Download Automático de Documentos
-    SistemaEspelho ->> SGSET: [7] Consulta automática (URL)
-    SGSET ->> SistemaEspelho: [8] Resposta com documentos
+    SistemaEspelho ->> SGSET: [5] Consulta automática (URL)
+    SGSET ->> SistemaEspelho: [6] Resposta com documentos
 
-    %% 3 - Processamento de Dados
-    Note over SistemaEspelho,ETL: 3. Envio para Tratamento
-    SistemaEspelho ->> ETL: [9] Envia documentos para tratamento
+    %% 3 - Normalização e Processamento de Dados
+    Note over SistemaEspelho,SGSETNormalizer: 3. Envio para Tratamento e Normalização
+    SistemaEspelho ->> SGSETNormalizer: [7] Envia documentos para normalização
+    SGSETNormalizer ->> SGSETNormalizer: [8] Renomeia colunas e remove duplicatas
+    SGSETNormalizer ->> ETL: [9] Envia dados normalizados para tratamento
     ETL ->> ETL: [10] Processa os Dados
     ETL ->> ETL: [11] Verifica divergências de dados
     ETL ->> Banco: [12] Salva dados tratados divergentes
@@ -50,7 +50,9 @@ sequenceDiagram
     SistemaEspelho ->> Banco: [20] Busca os dados (de acordo com o filtro)
     Banco ->> SistemaEspelho: [21] Envia dados
     SistemaEspelho ->> Usuário: [22] Visualização
+
 ```
+
 
 ## 2 Visão Física
 
@@ -63,9 +65,8 @@ graph TD;
         subgraph Backend_MVC
             
             View --> Service;
-            View --> Model;
-            Model --> Repositories;
-            Repositories --> BD_Postgres;
+            Service --> Serializers;
+            Serializers --> BD_Postgres;
         end
         
         subgraph Frontend_NextJS
@@ -84,10 +85,45 @@ graph TD;
 
 ```mermaid
 graph TD
-    B[home_view.py] --> B4[calendar_service.py] --> B2[repository]
-    B[home_view.py] --> B5[report_service.py] --> B2[repository]
-    B[home_view.py] --> B6[login_service.py] --> B2[repository]
-    B[home_view.py] --> B7[refresh_service.py] --> B2[repository]
-    B[home_view.py] --> B3[dashboard_service.py] --> B2[repository]
-    B2[course_repository] --> B1[course_model.py]
+    %% Estrutura geral do MVC com cada Model tendo sua View, Service e Serializer
+
+    subgraph MVC
+        %% Course
+        CourseView["CourseView (Controller)"] --> CourseService["CourseService"];
+        CourseService --> CourseSerializer["CourseSerializer"];
+        CourseSerializer --> CourseModel["CourseModel"];
+        CourseModel --> Database["BD_Postgres"];
+        
+        %% Course Class
+        CourseClassView["CourseClassView (Controller)"] --> CourseClassService["CourseClassService"];
+        CourseClassService --> CourseClassSerializer["CourseClassSerializer"];
+        CourseClassSerializer --> CourseClassModel["CourseClassModel"];
+        CourseClassModel --> Database;
+        
+        %% Instructor
+        InstructorView["InstructorView (Controller)"] --> InstructorService["InstructorService"];
+        InstructorService --> InstructorSerializer["InstructorSerializer"];
+        InstructorSerializer --> InstructorModel["InstructorModel"];
+        InstructorModel --> Database;
+        
+        %% Class Schedule
+        ClassScheduleView["ClassScheduleView (Controller)"] --> ClassScheduleService["ClassScheduleService"];
+        ClassScheduleService --> ClassScheduleSerializer["ClassScheduleSerializer"];
+        ClassScheduleSerializer --> ClassScheduleModel["ClassScheduleModel"];
+        ClassScheduleModel --> Database;
+        
+        %% Goal
+        GoalView["GoalView (Controller)"] --> GoalService["GoalService"];
+        GoalService --> GoalSerializer["GoalSerializer"];
+        GoalSerializer --> GoalModel["GoalModel"];
+        GoalModel --> Database;
+        
+        %% Event
+        EventView["EventView (Controller)"] --> EventService["EventService"];
+        EventService --> EventSerializer["EventSerializer"];
+        EventSerializer --> EventModel["EventModel"];
+        EventModel --> Database;
+    end
 ```
+
+

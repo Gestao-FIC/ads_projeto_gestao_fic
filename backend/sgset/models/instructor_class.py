@@ -1,9 +1,9 @@
 from django.db import models
-from .instructor import InstructorModel
-from .course_class import CourseClassModel
+from .instructor import Instructor
+from .course_class import CourseClass
 
 
-class InstructorClassModel(models.Model):
+class InstructorClass(models.Model):
     """
     Represents the relationship between an instructor and a course class.
 
@@ -13,10 +13,10 @@ class InstructorClassModel(models.Model):
     """
 
     instructor = models.ForeignKey(
-        InstructorModel, on_delete=models.CASCADE, related_name='courses'
+        Instructor, on_delete=models.CASCADE, related_name='courses'
     )
     course_class = models.ForeignKey(
-        CourseClassModel, on_delete=models.CASCADE, related_name='instructors'
+        CourseClass, on_delete=models.CASCADE, related_name='instructors'
     )
 
     class Meta:

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ..models.course_class import CourseClassModel
+from ..models.course_class import CourseClass
 
 class UpdateQuorumSerializer(serializers.Serializer):
     quorum = serializers.IntegerField(

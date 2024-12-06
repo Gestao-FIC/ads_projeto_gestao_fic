@@ -11,31 +11,16 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+
 import { Textarea } from "@/components/ui/textarea";
 
-// Tipos para o formulário
-type FormType = "geral" | "curso"; // Tipos possíveis de formulário
-
-interface EventFormProps {
-  formType: FormType;
-}
-
-export default function CalendarForm({ formType }: EventFormProps) {
+export default function TeacherCalendarForm() {
   // Definindo o estado do formulário
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [startDate, setStartDate] = useState<string>("");
   const [endDate, setEndDate] = useState<string>("");
-  const [tag, setTag] = useState<string>("");
+  const [tag] = useState<string>("");
   const [error, setError] = useState<string>("");
 
   // Função para enviar o formulário
@@ -53,27 +38,6 @@ export default function CalendarForm({ formType }: EventFormProps) {
     console.log({ title, description, startDate, endDate, tag });
   };
 
-  // Renderiza as opções de tag com base no tipo de formulário
-  const renderTagOptions = () => {
-    if (formType === "geral") {
-      return (
-        <>
-          <SelectItem value="feriado">Feriado</SelectItem>
-          <SelectItem value="emenda">Emenda</SelectItem>
-          <SelectItem value="evento">Evento</SelectItem>
-          <SelectItem value="outros">Outros</SelectItem>
-        </>
-      );
-    } else if (formType === "curso") {
-      return (
-        <>
-          <SelectItem value="curso">Curso</SelectItem>
-          <SelectItem value="outros">Outros</SelectItem>
-        </>
-      );
-    }
-  };
-
   return (
     <Dialog>
       {/* Botão para abrir o modal */}
@@ -85,13 +49,9 @@ export default function CalendarForm({ formType }: EventFormProps) {
 
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>
-            {formType === "geral"
-              ? "Formulário de Evento Geral"
-              : "Formulário de Curso"}
-          </DialogTitle>
+          <DialogTitle>Formulário de Evento</DialogTitle>
           <DialogDescription>
-            Preencha os campos para definir as datas do evento ou curso.
+            Preencha os campos para definir as datas do evento.
           </DialogDescription>
         </DialogHeader>
 
@@ -128,7 +88,7 @@ export default function CalendarForm({ formType }: EventFormProps) {
                 id="description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                placeholder="Descreva o evento (opcional)"
+                placeholder="Descreva o evento"
                 className="col-span-3"
               />
             </div>
@@ -159,24 +119,6 @@ export default function CalendarForm({ formType }: EventFormProps) {
                 onChange={(e) => setEndDate(e.target.value)}
                 className="col-span-3"
               />
-            </div>
-
-            {/* Categoria (Tag) */}
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="tag" className="text-right">
-                Categoria
-              </Label>
-              <Select onValueChange={setTag}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Selecione uma categoria" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    <SelectLabel>Categoria</SelectLabel>
-                    {renderTagOptions()}
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
             </div>
           </div>
 

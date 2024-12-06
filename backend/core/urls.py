@@ -25,5 +25,8 @@ urlpatterns = [
     path('quorum/', include('sgset.urls.update_quorum_urls')),
     path('goals/', include('sgset.urls.goals_urls')),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('instructor/', include('sgset.urls.InstructorUrls')),
+    path('instructor-class/', include('sgset.urls.InstructorClassUrls')),
+    path('event/', include('sgset.urls.CalendarUrls'))
     path('sgset/', include('sgset.urls.SGSETUrls'))
 ]
