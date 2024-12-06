@@ -102,7 +102,7 @@ export const gaugeData = [
   },
 ];
 
-type EventType = "holiday" | "vacation" | "blockage";
+type EventType = "holiday" | "event" | "others" | "amend";
 
 interface CalendarEvent {
   date: Date;
@@ -111,14 +111,6 @@ interface CalendarEvent {
 
 export const events: CalendarEvent[] = [
   { date: new Date(2024, 0, 1), type: "holiday" },
-  { date: new Date(2024, 0, 15), type: "vacation" },
-  { date: new Date(2024, 0, 31), type: "blockage" },
-  { date: new Date(2024, 1, 10), type: "holiday" },
-  { date: new Date(2024, 1, 20), type: "vacation" },
-  { date: new Date(2024, 1, 28), type: "blockage" },
-  { date: new Date(2024, 2, 5), type: "holiday" },
-  { date: new Date(2024, 2, 15), type: "vacation" },
-  { date: new Date(2024, 2, 25), type: "blockage" },
 ];
 
 export type CoursesType = {

@@ -12,11 +12,14 @@ export default function DashCalendar() {
     holiday: events
       .filter((event) => event.type === "holiday")
       .map((event) => event.date),
-    vacation: events
-      .filter((event) => event.type === "vacation")
+    amend: events
+      .filter((event) => event.type === "amend")
       .map((event) => event.date),
-    blockage: events
-      .filter((event) => event.type === "blockage")
+    event: events
+      .filter((event) => event.type === "event")
+      .map((event) => event.date),
+    others: events
+      .filter((event) => event.type === "others")
       .map((event) => event.date),
   };
 
@@ -31,8 +34,9 @@ export default function DashCalendar() {
         modifiers={modifiers}
         modifiersClassNames={{
           holiday: "bg-yellow-200 text-black",
-          vacation: "bg-green-200 text-black",
-          blockage: "bg-red-200 text-black",
+          event: "bg-green-200 text-black",
+          other: "bg-red-200 text-black",
+          amend: "bg-blue-200 text-black",
         }}
       />
 
@@ -43,11 +47,15 @@ export default function DashCalendar() {
         </div>
         <div className="flex items-center gap-2">
           <span className="w-4 h-4 rounded-full bg-green-200 border"></span>
-          <span className="text-secondary">Férias</span>
+          <span className="text-secondary">Emenda</span>
         </div>
         <div className="flex items-center gap-2">
           <span className="w-4 h-4 rounded-full bg-red-200 border"></span>
-          <span className="text-secondary">Bloqueio</span>
+          <span className="text-secondary">Evento</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="w-4 h-4 rounded-full bg-blue-200 border"></span>
+          <span className="text-secondary">Outros</span>
         </div>
       </div>
 
