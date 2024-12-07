@@ -3,13 +3,13 @@ from datetime import datetime
 from unidecode import unidecode
 import pandas as pd
 
-from sgset.models.course import CourseModel
-from sgset.models.day_of_week import DayOfWeekModel
+from sgset.models.course import Course
+from sgset.models.day_of_week import DayOfWeek
 from sgset.serializers.course_serializer import CourseSerializer
 from sgset.serializers.course_class_serializer import CourseClassModelSerializer
-from sgset.models.course_class import CourseClassModel
+from sgset.models.course_class import CourseClass
 from sgset.serializers.class_schedule import ClassScheduleSerializer
-from sgset.models.class_schedule import ClassScheduleModel
+from sgset.models.class_schedule import ClassSchedule
 
 
 class SGSETNormalizer:
@@ -37,7 +37,7 @@ class SGSETNormalizer:
     def find_dayofweek_fk(df_data):
 
         # Transform day of week table in dataframe
-        weekdays = DayOfWeekModel.objects.all()
+        weekdays = DayOfWeek.objects.all()
         days_weekdays = list(weekdays.values('id', 'name'))
         df_weekdays = pd.DataFrame(days_weekdays)
 
@@ -87,7 +87,7 @@ class SGSETNormalizer:
 
         # Save rows in databasel
         serializer = ClassScheduleSerializer(data=data, many=True)
-        ClassScheduleModel.objects.all().delete()
+        ClassSchedule.objects.all().delete()
         serializer.is_valid(raise_exception=True)
 
         return serializer.save()
@@ -119,7 +119,7 @@ class SGSETNormalizer:
 
         # Persist data
         serializer = CourseSerializer(data=data, many=True)
-        CourseModel.objects.all().delete()
+        Course.objects.all().delete()
         serializer.is_valid(raise_exception=True)
 
         return serializer.save()
@@ -131,7 +131,7 @@ class SGSETNormalizer:
         courses_names = df_data['curso'].unique()
 
         # Query the database to get all courses that match the names in 'courses_names'
-        courses = CourseModel.objects.filter(name__in=courses_names)
+        courses = Course.objects.filter(name__in=courses_names)
         course_ids_dict = {course.name: course.id for course in courses}
 
         # Map the 'curso' column to the new 'course' column with course IDs
@@ -175,7 +175,7 @@ class SGSETNormalizer:
 
         # Persist data
         serializer = CourseClassModelSerializer(data=data, many=True)
-        CourseClassModel.objects.all().delete()
+        CourseClass.objects.all().delete()
         serializer.is_valid(raise_exception=True)
 
         return serializer.save()
