@@ -2,7 +2,7 @@ import uuid
 from django.db import models
 
 
-class DayOfWeekModel(models.Model):
+class DayOfWeek(models.Model):
     """Represents a day of the week (e.g., 'Monday', 'Tuesday').
 
     Attributes:

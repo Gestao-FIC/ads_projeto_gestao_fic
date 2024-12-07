@@ -2,7 +2,7 @@ import uuid
 from django.db import models
 
 
-class GoalModel(models.Model):
+class Goal(models.Model):
     """
     Model to represent goals for specific years.
 
@@ -51,4 +51,4 @@ class GoalModel(models.Model):
         Returns a string representation of the goal, showing the year, 
         goal type, and value.
         """
-        return f"{self.year} - {self.goal_type}: {self.value}"
+        return f"{self.year} - {self.goal_description}: {self.value}"

@@ -1,11 +1,14 @@
-version: '3.8'
-
 services:
   backend:
     build:
-      context: ./backend  # Caminho para o diretório do backend
+      context: ./backend
     container_name: django_backend
-    command: python manage.py runserver 0.0.0.0:8000
+    command: > 
+      sh -c "python manage.py makemigrations &&
+              python manage.py migrate &&
+              python manage.py makemigrations sgset &&
+              python manage.py migrate sgset &&
+              python manage.py runserver 0.0.0.0:8000"
     volumes:
       - ./backend:/app
     ports:
@@ -14,21 +17,19 @@ services:
       DJANGO_DEBUG: 'True'
       DJANGO_SECRET_KEY: 'mysecretkey'
       DJANGO_ALLOWED_HOSTS: 'localhost,127.0.0.1'
-      DATABASE_URL: 'postgres://myuser:mypassword@db:5432/mydatabase'
+      DATABASE_URL: 'postgres://postgres:password@db:5432/database'
     depends_on:
       - db
 
   frontend:
     build:
-      context: ./frontend  # Caminho para o diretório do frontend
+      context: ./frontend
     container_name: nextjs_frontend
-    command: npm run dev
-    volumes:
-      - ./frontend:/app
     ports:
       - "3000:3000"
     environment:
-      NODE_ENV: development
+      NODE_ENV: production
+
 
   db:
     image: postgres:15  # Usando a imagem do PostgreSQL versão 15
