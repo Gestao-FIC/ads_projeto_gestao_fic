@@ -99,7 +99,7 @@ class Migration(migrations.Migration):
                 ('income', models.DecimalField(decimal_places=2, max_digits=10,
                  null=True, verbose_name='Income from Enrollments')),
                 ('course', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
-                 related_name='classes', to='sgset.coursemodel', verbose_name='Course')),
+                 related_name='classes', to='sgset.course', verbose_name='Course')),
             ],
             options={
                 'verbose_name': 'Course Class',
@@ -111,8 +111,8 @@ class Migration(migrations.Migration):
             name='ClassSchedule',
             fields=[
                 ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
-                ('class_instance', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='day_schedules', to='sgset.courseclassmodel')),
-                ('day_of_week', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='class_schedules', to='sgset.dayofweekmodel')),
+                ('class_instance', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='day_schedules', to='sgset.courseclass')),
+                ('day_of_week', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='class_schedules', to='sgset.dayofweek')),
             ],
         ),
         migrations.CreateModel(
@@ -126,7 +126,7 @@ class Migration(migrations.Migration):
                 ('start_date', models.DateField(verbose_name='Start Date')),
                 ('end_date', models.DateField(verbose_name='End Date')),
                 ('tag', models.CharField(choices=[('feriado', 'Feriado'), ('emenda', 'Emenda'), ('evento', 'Evento'), ('curso', 'Curso'), ('outros', 'Outros')], max_length=10, verbose_name='Tag')),
-                ('instructor', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='instructor', to='sgset.instructormodel')),
+                ('instructor', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='instructor', to='sgset.instructor')),
             ],
             options={
                 'verbose_name': 'Date Reservation',
@@ -138,8 +138,8 @@ class Migration(migrations.Migration):
             name='InstructorClass',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('course_class', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='instructors', to='sgset.courseclassmodel')),
-                ('instructor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='courses', to='sgset.instructormodel')),
+                ('course_class', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='instructors', to='sgset.courseclass')),
+                ('instructor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='courses', to='sgset.instructor')),
             ],
             options={
                 'verbose_name': 'Instructor Class',
