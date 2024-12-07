@@ -37,17 +37,15 @@ Este sistema foi desenvolvido para otimizar a alocação de docentes e o gerenci
 
 ##### Passos para Configuração:  
 1. Clone o repositório do projeto:  
-   ```bash
-   git clone https://github.com/Gestao-FIC/ads_projeto_gestao_fic
-   cd ads_projeto_gestao_fic
-   ```  
+   `git clone https://github.com/Gestao-FIC/ads_projeto_gestao_fic`  
+   `cd ads_projeto_gestao_fic`
+   
 2. Inicialize o ambiente com Docker:  
-   ```bash
-   docker-compose up --build
-   ```  
+   `docker-compose up --build`
+   
 3. Acesse o sistema:  
    - Backend: `http://localhost:8000`  
-   - Frontend: `http://localhost:3000`
+   - Frontend: `http://localhost:3000`  
    - Postgree: `http://localhost:5432`  
 
 ##### Dependências Específicas:  
@@ -76,7 +74,7 @@ Este sistema foi desenvolvido para otimizar a alocação de docentes e o gerenci
 - As revisões são realizadas por um **Tech Lead** designado.  
 
 ##### Testes Automatizados:  
-- Não há testes automatizados atualmente implementados.  
+- **Testes Unitários nas Models e Serializers:** Foram implementados testes unitários nas models e serializers para garantir o correto funcionamento das funcionalidades e validações. Posteriomente teremos uma maior cobertura de teste para outras partes do sistema.
 
 ---
 
@@ -99,4 +97,4 @@ Este sistema foi desenvolvido para otimizar a alocação de docentes e o gerenci
 ---
 
 #### 9. **Dívidas Técnicas e Pontos de Atenção**  
-- **Conhecimento prévio do SGSET:** É importante que os novos desenvolvedores compreendam o funcionamento básico do sistema SGSET para lidar com a integração de dados.  
+- **Conhecimento prévio do SGSET:** É importante que os novos desenvolvedores compreendam o funcionamento básico do sistema SGSET para lidar com a integração de dados.
