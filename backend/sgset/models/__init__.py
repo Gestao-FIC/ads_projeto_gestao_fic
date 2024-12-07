@@ -6,3 +6,4 @@ from .event import Event
 from .goal import Goal
 from .instructor_class import InstructorClass
 from .instructor import Instructor
+from .sgset_data import SGSETModel
