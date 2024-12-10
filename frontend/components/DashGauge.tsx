@@ -63,10 +63,6 @@ export default function GaugeComponent({
     }
   };
 
-  const handleBlur = () => {
-    if (isEditing) handleSaveTotal();
-  };
-
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       handleSaveTotal();
@@ -108,7 +104,10 @@ export default function GaugeComponent({
               className="border-b-2 border-blue-400 focus:outline-none text-center"
               onChange={handleTotalChange}
               onKeyDown={handleKeyDown}
-              onBlur={handleBlur}
+              onBlur={() => {
+                setIsEditing(false);
+                setTotal(initialTotal);
+              }}
             />
           ) : types != "receita" ? (
             <>
