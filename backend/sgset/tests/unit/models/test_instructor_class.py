@@ -1,8 +1,5 @@
 from django.test import TestCase
-from sgset.models import InstructorClass
-from sgset.models.instructor import Instructor
-from sgset.models.class_schedule import CourseClassModel
-from sgset.models.course import CourseModel
+from sgset.models import InstructorClass, Instructor, CourseClass, Course
 
 
 class InstructorClassModelTest(TestCase):
@@ -11,8 +8,10 @@ class InstructorClassModelTest(TestCase):
         Configura os dados necessários para o teste.
         """
         self.instructor = Instructor.objects.create(name='John Doe')
-        self.course = CourseModel.objects.create(name='Computer Science')  # Criar o curso
-        self.course_class = CourseClassModel.objects.create(code='CS101', course=self.course)  # Atribuindo o curso
+        self.course = Course.objects.create(
+            name='Computer Science')  # Criar o curso
+        self.course_class = CourseClass.objects.create(
+            code='CS101', course=self.course)  # Atribuindo o curso
         self.instructor_class = InstructorClass.objects.create(
             instructor=self.instructor,
             course_class=self.course_class

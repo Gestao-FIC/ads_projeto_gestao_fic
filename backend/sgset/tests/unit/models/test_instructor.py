@@ -1,17 +1,17 @@
 from django.test import TestCase
-from sgset.models.instructor import Instructor
-from sgset.models.class_schedule import CourseClassModel
-from sgset.models import InstructorClass
-from sgset.models.course import CourseModel
+from sgset.models import Instructor, CourseClass, InstructorClass, Course
+
 
 class InstructorClassModelTest(TestCase):
     def setUp(self):
         """
         Configura os dados necessários para o teste.
         """
-        self.instructor = Instructor.objects.create(name='John Doe', source='sgset')
-        self.course = CourseModel.objects.create(name='Computer Science')
-        self.course_class = CourseClassModel.objects.create(code='CS101', course=self.course)
+        self.instructor = Instructor.objects.create(
+            name='John Doe', source='sgset')
+        self.course = Course.objects.create(name='Computer Science')
+        self.course_class = CourseClass.objects.create(
+            code='CS101', course=self.course)
         self.instructor_class = InstructorClass.objects.create(
             instructor=self.instructor,
             course_class=self.course_class
