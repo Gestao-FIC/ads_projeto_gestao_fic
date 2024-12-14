@@ -4,21 +4,21 @@ import { diasSemana, iniciaisDias } from "@/mocks/mock";
 
 export function CourseDetails({ course }: { course: CoursesType | null }) {
   // Função para estilizar os dias da semana
-  const renderDiasSemana = () => {
-    return diasSemana.map((dia, index) => {
-      const isCursoDay = course?.diaSemana.includes(dia);
-      return (
-        <span
-          key={index}
-          className={`mr-1 ${
-            isCursoDay ? "font-bold text-yellow-400" : "text-secondary"
-          }`}
-        >
-          {iniciaisDias[index]}
-        </span>
-      );
-    });
-  };
+  // const renderDiasSemana = () => {
+  //   return diasSemana.map((dia, index) => {
+  //     const isCursoDay = course?.diaSemana.includes(dia);
+  //     return (
+  //       <span
+  //         key={index}
+  //         className={`mr-1 ${
+  //           isCursoDay ? "font-bold text-yellow-400" : "text-secondary"
+  //         }`}
+  //       >
+  //         {iniciaisDias[index]}
+  //       </span>
+  //     );
+  //   });
+  // };
 
   if (!course) {
     return (
@@ -39,31 +39,31 @@ export function CourseDetails({ course }: { course: CoursesType | null }) {
       <div className="space-y-2">
         <p className="flex justify-between">
           <span className="font-semibold text-white">Turno:</span>{" "}
-          {course.turno === "M"
+          {course.shift === "M"
             ? "Manhã"
-            : course.turno === "T"
+            : course.shift === "T"
             ? "Tarde"
             : "Noite"}
         </p>
         <p className="flex justify-between">
           <span className="font-semibold text-white">Carga Horária:</span>
-          <p>{course.cargaHoraria}</p>
+          <p>{course.duration}</p>
         </p>
-        <p className="flex justify-between">
+        {/* <p className="flex justify-between">
           <span className="font-semibold text-white">Dias da Semana:</span>
           <p>{renderDiasSemana()}</p>
-        </p>
+        </p> */}
         <p className="flex justify-between">
           <span className="font-semibold text-white">Data Início:</span>
-          <p>{course.dataInicio}</p>
+          <p>{course.period_from}</p>
         </p>
         <p className="flex justify-between">
           <span className="font-semibold text-white">Data Fim:</span>
-          <p>{course.dataFim}</p>
+          <p>{course.period_to}</p>
         </p>
         <p className="flex justify-between">
           <span className="font-semibold text-white">Docente:</span>
-          <p>{course.docente}</p>
+          <p>{course.teacher}</p>
         </p>
         <p className="flex justify-between">
           <span className="font-semibold text-white">Quórum:</span>
