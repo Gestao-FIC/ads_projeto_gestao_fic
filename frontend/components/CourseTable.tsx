@@ -26,41 +26,42 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { CheckCircle, Circle } from "lucide-react";
-import { courseData, CoursesType } from "@/mocks/mock";
+import { CoursesType } from "@/mocks/mock";
+import { fetchCourseClasses } from "@/utils/fetch/class";
 
 export const columns: ColumnDef<CoursesType>[] = [
   {
-    accessorKey: "nome",
+    accessorKey: "course",
     header: "Nome do Curso",
-    cell: ({ row }) => <div>{row.getValue("nome")}</div>,
+    cell: ({ row }) => <div>{row.getValue("course")}</div>,
   },
   {
-    accessorKey: "turma",
+    accessorKey: "code",
     header: "Turma",
-    cell: ({ row }) => <div>{row.getValue("turma")}</div>,
+    cell: ({ row }) => <div>{row.getValue("code")}</div>,
   },
   {
-    accessorKey: "docente",
+    accessorKey: "teacher",
     header: "Docente",
-    cell: ({ row }) => <div>{row.getValue("docente")}</div>,
+    cell: ({ row }) => <div>{row.getValue("teacher")}</div>,
   },
   {
-    accessorKey: "matriculados",
+    accessorKey: "actual_enrollments",
     header: "Matrículas",
-    cell: ({ row }) => <div>{row.getValue("matriculados")}</div>,
+    cell: ({ row }) => <div>{row.getValue("actual_enrollments")}</div>,
   },
   {
-    accessorKey: "vagas",
+    accessorKey: "estimated_enrollments",
     header: "Vagas",
-    cell: ({ row }) => <div>{row.getValue("vagas")}</div>,
+    cell: ({ row }) => <div>{row.getValue("estimated_enrollments")}</div>,
   },
   {
     accessorKey: "quorum",
     header: "Quorum (%)",
     cell: ({ row }) => {
       const quorum = row.getValue<number>("quorum");
-      const students = row.getValue<number>("matriculados");
-      const vacancy = row.getValue<number>("vagas");
+      const students = row.getValue<number>("actual_enrollments");
+      const vacancy = row.getValue<number>("estimated_enrollments");
       const quorumAchieved =
         vacancy > 0 && (students / vacancy) * 100 >= quorum;
 
@@ -92,6 +93,7 @@ export function CourseTable({
 }: {
   setSelectedCourse: React.Dispatch<React.SetStateAction<CoursesType | null>>;
 }) {
+  const [courseData, setCourseData] = React.useState<CoursesType[]>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   );
@@ -110,15 +112,28 @@ export function CourseTable({
     initialState: { pagination: { pageSize: 7 } },
   });
 
+  const loadCoursesClasses = async () => {
+    try {
+      const data = await fetchCourseClasses();
+      setCourseData(data);
+    } catch (error) {
+      console.error("Erro ao carregar turmas:", error);
+    }
+  };
+
+  React.useEffect(() => {
+    loadCoursesClasses();
+  }, []);
+
   return (
     <div className="w-full p-4 h-[500px] flex flex-col">
       {/* Filtro de pesquisa */}
       <div className="flex items-center py-4">
         <Input
           placeholder="Pesquisar cursos..."
-          value={(table.getColumn("nome")?.getFilterValue() as string) ?? ""}
+          value={(table.getColumn("course")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("nome")?.setFilterValue(event.target.value)
+            table.getColumn("course")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
