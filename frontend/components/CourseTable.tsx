@@ -57,13 +57,17 @@ export const columns: ColumnDef<CoursesType>[] = [
   },
   {
     accessorKey: "quorum",
-    header: "Quorum (%)",
+    header: "Quorum",
+    cell: ({ row }) => <div>{row.getValue("estimated_enrollments")}</div>,
+  },
+  {
+    accessorKey: "quorum",
+    header: "Quorum",
     cell: ({ row }) => {
       const quorum = row.getValue<number>("quorum");
       const students = row.getValue<number>("actual_enrollments");
-      const vacancy = row.getValue<number>("estimated_enrollments");
-      const quorumAchieved =
-        vacancy > 0 && (students / vacancy) * 100 >= quorum;
+
+      const quorumAchieved = quorum && students >= quorum;
 
       return (
         <Button
@@ -81,7 +85,7 @@ export const columns: ColumnDef<CoursesType>[] = [
           ) : (
             <Circle className="text-muted-foreground" />
           )}
-          {quorum}%
+          {quorum}
         </Button>
       );
     },
