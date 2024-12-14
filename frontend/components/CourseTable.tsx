@@ -58,11 +58,6 @@ export const columns: ColumnDef<CoursesType>[] = [
   {
     accessorKey: "quorum",
     header: "Quorum",
-    cell: ({ row }) => <div>{row.getValue("estimated_enrollments")}</div>,
-  },
-  {
-    accessorKey: "quorum",
-    header: "Quorum",
     cell: ({ row }) => {
       const quorum = row.getValue<number>("quorum");
       const students = row.getValue<number>("actual_enrollments");
