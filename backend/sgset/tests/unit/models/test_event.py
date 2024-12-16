@@ -1,6 +1,5 @@
 import pytest
-from sgset.models import EventModel
-from sgset.models import Instructor
+from sgset.models import Event, Instructor
 import uuid
 from datetime import date
 
@@ -14,7 +13,7 @@ def instructor_instance():
 @pytest.mark.django_db
 @pytest.fixture
 def event_instance(instructor_instance):
-    return EventModel.objects.create(
+    return Event.objects.create(
         instructor=instructor_instance,
         title="National Holiday",
         description="A national holiday",
@@ -45,12 +44,12 @@ def test_event_str(event_instance):
 @pytest.mark.django_db
 def test_event_unique_tag():
     instructor = Instructor.objects.create(name="Jane Doe")
-    EventModel.objects.create(
+    Event.objects.create(
         instructor=instructor,
         title="Holiday Event",
         start_date=date(2024, 12, 31),
         end_date=date(2024, 12, 31),
         tag="evento"
     )
-    event = EventModel.objects.get(title="Holiday Event")
+    event = Event.objects.get(title="Holiday Event")
     assert event.tag == "evento"

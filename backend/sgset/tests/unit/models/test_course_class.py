@@ -1,19 +1,19 @@
 import pytest
 from django.utils import timezone
-from sgset.models import CourseClassModel, CourseModel
+from sgset.models import CourseClass, Course
 from decimal import Decimal
 
 @pytest.mark.django_db
 @pytest.fixture
 def course_instance():
     """Cria uma instância de Course para os testes."""
-    return CourseModel.objects.create(name="Mathematics")
+    return Course.objects.create(name="Mathematics")
 
 @pytest.mark.django_db
 @pytest.fixture
 def course_class_instance(course_instance):
-    """Cria uma instância de CourseClassModel para os testes."""
-    return CourseClassModel.objects.create(
+    """Cria uma instância de CourseClass para os testes."""
+    return CourseClass.objects.create(
         code="CQ.AJUS.N-1",
         course=course_instance,
         shift="Evening",
@@ -33,7 +33,7 @@ def course_class_instance(course_instance):
 
 @pytest.mark.django_db
 def test_course_class_creation(course_class_instance):
-    """Teste a criação de uma instância de CourseClassModel."""
+    """Teste a criação de uma instância de CourseClass."""
     course_class = course_class_instance
     assert course_class.code == "CQ.AJUS.N-1"
     assert course_class.course.name == "Mathematics"
@@ -53,6 +53,6 @@ def test_course_class_creation(course_class_instance):
     
 @pytest.mark.django_db
 def test_course_class_str(course_class_instance):
-    """Teste a string de representação do CourseClassModel."""
+    """Teste a string de representação do CourseClass."""
     course_class = course_class_instance
     assert str(course_class) == "CQ.AJUS.N-1 - Mathematics"
